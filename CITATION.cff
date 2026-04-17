@@ -18,7 +18,7 @@ authors:
     given-names: Tatiana
     affiliation: "University of Luxembourg"
     orcid: "https://orcid.org/0000-0003-0478-1566"
-version: "1.0.0"
+version: "1.0.1"
 date-released: "2026-04-17"
 license: "CC-BY-4.0"
 repository-code: "https://github.com/Tapetrova/web-of-agents-taxonomy"

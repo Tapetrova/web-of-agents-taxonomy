@@ -7,8 +7,8 @@ corpus files listed below; do not rely on prior knowledge.
 
 ## Your inputs
 
-All files are in this directory:
-`/Users/tapetrova/Documents/Fake_papers/TAXONOMY/WoE_taxonomy_IEEE_IS-2/`
+All files are in the repository root (or whichever base path the
+rater has been given).  Paths below are relative to that base.
 
 1. **Codebook** — `taxonomy_codebook.md`.  Read it in full. Apply its
    operational criteria and tie-breaking rules literally.
