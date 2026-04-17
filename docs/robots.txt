@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tapetrova.github.io/web-of-agents-taxonomy/sitemap.xml

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Functional Taxonomy of the Web of Agents | Tatiana Petrova</title>
+
+<!-- Google Scholar / Highwire Press citation metadata -->
+<meta name="citation_title" content="A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol">
+<meta name="citation_author" content="Petrova, Tatiana">
+<meta name="citation_publication_date" content="2026/04/17">
+<meta name="citation_online_date" content="2026/04/17">
+<meta name="citation_language" content="en">
+<meta name="citation_pdf_url" content="https://tapetrova.github.io/web-of-agents-taxonomy/woa_taxonomy.pdf">
+<meta name="citation_abstract_html_url" content="https://tapetrova.github.io/web-of-agents-taxonomy/">
+<meta name="citation_fulltext_html_url" content="https://tapetrova.github.io/web-of-agents-taxonomy/">
+<meta name="citation_keywords" content="Web of Agents; multi-agent systems; large language models; agent interoperability; Model Context Protocol; taxonomy; inter-rater reliability">
+<meta name="citation_author_institution" content="University of Luxembourg">
+<meta name="citation_abstract" content="The Web of Agents (WoA) has cycled through three architectural generations, FIPA/BDI multi-agent systems, the Semantic Web, and LLM-powered agents, with markedly different adoption outcomes. Existing taxonomies describe these generations chronologically but offer neither operational classification criteria nor empirical validation. This article contributes a four-axis functional taxonomy (semantic foundation, communication paradigm, locus of intelligence, discovery mechanism) together with an operational codebook, a pre-registered three-part validation protocol, and a three-rater LLM-self-consistency pilot on five systems that yielded a mean pairwise Cohen's kappa of {1.00, 0.81, 0.80, 1.00}.">
+
+<!-- Dublin Core (alternative citation scheme) -->
+<meta name="DC.title" content="A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol">
+<meta name="DC.creator" content="Petrova, Tatiana">
+<meta name="DC.date" content="2026-04-17">
+<meta name="DC.type" content="Text.Preprint">
+<meta name="DC.format" content="application/pdf">
+<meta name="DC.identifier" content="https://tapetrova.github.io/web-of-agents-taxonomy/">
+<meta name="DC.language" content="en">
+<meta name="DC.rights" content="CC-BY-4.0">
+<meta name="DC.subject" content="Web of Agents; multi-agent systems; large language models; agent interoperability; taxonomy">
+<meta name="DC.description" content="Four-axis functional taxonomy of the Web of Agents, with operational codebook, pre-registered validation protocol, and three-rater LLM-self-consistency pilot.">
+
+<!-- Open Graph (social and general crawlers) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Functional Taxonomy of the Web of Agents">
+<meta property="og:description" content="Four-axis functional taxonomy, operational codebook, validation protocol, and three-rater pilot with mean Cohen's kappa {1.00, 0.81, 0.80, 1.00}.">
+<meta property="og:url" content="https://tapetrova.github.io/web-of-agents-taxonomy/">
+<meta property="article:author" content="Tatiana Petrova">
+<meta property="article:published_time" content="2026-04-17">
+
+<meta name="description" content="Four-axis functional taxonomy of the Web of Agents with operational codebook, validation protocol, and three-rater self-consistency pilot.">
+<meta name="author" content="Tatiana Petrova">
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://tapetrova.github.io/web-of-agents-taxonomy/">
+<link rel="alternate" type="application/pdf" href="woa_taxonomy.pdf" title="Full article (PDF)">
+
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --link: #1a4fa0;
+    --rule: #d9d9d9;
+    --bg: #fdfdfc;
+  }
+  html { background: var(--bg); }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink);
+    max-width: 52em;
+    margin: 2em auto;
+    padding: 0 1.2em;
+    line-height: 1.55;
+  }
+  h1 {
+    font-size: 1.55em;
+    line-height: 1.25;
+    margin: 0.2em 0 0.15em;
+  }
+  h2 {
+    font-size: 1.12em;
+    margin: 1.6em 0 0.4em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.2em;
+  }
+  .byline { color: var(--muted); font-style: italic; margin: 0 0 0.2em; }
+  .affil  { color: var(--muted); font-size: 0.92em; margin: 0 0 0.4em; }
+  .meta   { color: var(--muted); font-size: 0.9em; margin-bottom: 1.2em; }
+  a { color: var(--link); }
+  a:hover { text-decoration: underline; }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 1em 0 1.6em;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.45em 0.8em;
+    border: 1px solid var(--link);
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--link);
+    background: white;
+    font-size: 0.95em;
+  }
+  .btn:hover { background: var(--link); color: white; text-decoration: none; }
+  .btn.primary { background: var(--link); color: white; }
+  .btn.primary:hover { background: #13377a; }
+  pre, code {
+    font-family: "Menlo", "Consolas", monospace;
+    font-size: 0.85em;
+  }
+  pre {
+    background: #f5f5f2;
+    padding: 0.8em 1em;
+    border-radius: 3px;
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+  }
+  table {
+    border-collapse: collapse;
+    margin: 0.6em 0 1.2em;
+    font-size: 0.95em;
+  }
+  th, td {
+    padding: 0.35em 0.8em;
+    border-bottom: 1px solid var(--rule);
+    text-align: left;
+  }
+  th { font-weight: bold; color: var(--muted); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  object.paper, iframe.paper {
+    width: 100%;
+    height: 85vh;
+    border: 1px solid var(--rule);
+    margin: 1em 0;
+  }
+  footer {
+    margin-top: 3em;
+    padding-top: 1em;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.88em;
+  }
+</style>
+</head>
+<body>
+
+<h1>A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol</h1>
+
+<p class="byline">Tatiana Petrova</p>
+<p class="affil">University of Luxembourg</p>
+<p class="meta">Preprint &middot; April&nbsp;2026 &middot; CC-BY-4.0</p>
+
+<div class="actions">
+  <a class="btn primary" href="woa_taxonomy.pdf">Download PDF</a>
+  <a class="btn" href="https://github.com/Tapetrova/web-of-agents-taxonomy">GitHub repository</a>
+  <a class="btn" href="https://github.com/Tapetrova/web-of-agents-taxonomy/releases">Releases</a>
+  <a class="btn" href="#bibtex">BibTeX</a>
+</div>
+
+<h2>Abstract</h2>
+<p>The &ldquo;Web of Agents&rdquo; (WoA) has cycled through three architectural generations, FIPA/BDI multi-agent systems, the Semantic Web, and LLM-powered agents, with markedly different adoption outcomes. Existing taxonomies describe these generations chronologically but offer neither operational classification criteria nor empirical validation.</p>
+<p>We contribute a four-axis functional taxonomy (semantic foundation, communication paradigm, locus of intelligence, discovery mechanism) together with (i)&nbsp;an operational codebook specifying measurable criteria for each axis-value, (ii)&nbsp;a pre-registered three-part validation protocol covering inter-rater reliability, predictive validity, and LLM-based classification, and (iii)&nbsp;a three-rater LLM-self-consistency pilot on five systems against a locally archived corpus, yielding a mean pairwise Cohen&rsquo;s &kappa; of {1.00,&nbsp;0.81,&nbsp;0.80,&nbsp;1.00} across the four axes. Item-level disagreements are attributable to genuine corpus silence rather than classifier divergence.</p>
+<p>The taxonomy yields a testable hypothesis, that adoption correlates with <em>axis coherence</em> rather than with any single axis value, which reframes the familiar &ldquo;paradigm shift&rdquo; narrative as an empirical claim rather than a post-hoc explanation. No quantitative conclusions about that hypothesis are drawn here; we specify the data and the decision rule under which it would be supported or falsified by the planned full execution with human coders.</p>
+
+<h2>Pilot results (E4a, this article)</h2>
+<table>
+  <thead>
+    <tr><th>Axis</th><th>Mean percent agreement</th><th>Mean Cohen&rsquo;s &kappa;</th><th>Disagreements</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Semantic Foundation (a1)</td><td class="num">1.000</td><td class="num">1.000</td><td class="num">0</td></tr>
+    <tr><td>Communication (a2)</td>      <td class="num">0.867</td><td class="num">0.815</td><td class="num">1</td></tr>
+    <tr><td>Locus of Intelligence (a3)</td><td class="num">0.867</td><td class="num">0.804</td><td class="num">1</td></tr>
+    <tr><td>Discovery (a4)</td>          <td class="num">1.000</td><td class="num">1.000</td><td class="num">0</td></tr>
+  </tbody>
+</table>
+
+<h2>Full text</h2>
+<object class="paper" data="woa_taxonomy.pdf#view=FitH" type="application/pdf">
+  <p>Your browser does not display embedded PDFs. <a href="woa_taxonomy.pdf">Download the PDF</a>.</p>
+</object>
+
+<h2>Reproducibility</h2>
+<p>The article is accompanied by (i)&nbsp;an operational codebook, (ii)&nbsp;a standardized rater prompt, (iii)&nbsp;a five-system local specification corpus, (iv)&nbsp;three independent rater outputs, and (v)&nbsp;a script that recomputes all statistics. All artefacts are released with the repository under CC-BY-4.0 (article, data) and MIT (scripts):</p>
+<pre>git clone https://github.com/Tapetrova/web-of-agents-taxonomy.git
+cd web-of-agents-taxonomy
+python3 scripts/compute_agreement.py</pre>
+
+<h2 id="bibtex">Citation (BibTeX)</h2>
+<pre>@misc{Petrova_WoATaxonomy_2026,
+  author    = {Petrova, Tatiana},
+  title     = {A Functional Taxonomy of the Web of Agents:
+               Operational Definitions and an Empirical Validation Protocol},
+  year      = {2026},
+  month     = {April},
+  url       = {https://tapetrova.github.io/web-of-agents-taxonomy/},
+  note      = {Preprint. Source and data:
+               \url{https://github.com/Tapetrova/web-of-agents-taxonomy}}
+}</pre>
+
+<footer>
+&copy;&nbsp;2026 Tatiana Petrova. Article text, figures, and data under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>. Reproducibility script under MIT.
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol",
+  "name": "A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol",
+  "author": {
+    "@type": "Person",
+    "name": "Tatiana Petrova",
+    "affiliation": { "@type": "Organization", "name": "University of Luxembourg" }
+  },
+  "datePublished": "2026-04-17",
+  "inLanguage": "en",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://tapetrova.github.io/web-of-agents-taxonomy/",
+  "mainEntityOfPage": "https://tapetrova.github.io/web-of-agents-taxonomy/",
+  "encoding": {
+    "@type": "MediaObject",
+    "contentUrl": "https://tapetrova.github.io/web-of-agents-taxonomy/woa_taxonomy.pdf",
+    "encodingFormat": "application/pdf"
+  },
+  "keywords": "Web of Agents, multi-agent systems, large language models, agent interoperability, Model Context Protocol, taxonomy, inter-rater reliability",
+  "isPartOf": {
+    "@type": "SoftwareSourceCode",
+    "codeRepository": "https://github.com/Tapetrova/web-of-agents-taxonomy"
+  }
+}
+</script>
+
+</body>
+</html>
