@@ -1,0 +1,5229 @@
+===== SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot =====
+===== FILE: fipa_raw.html =====
+
+FIPA ACL Message Structure Specification
+
+ 
+
+ 
+
+FOUNDATION
+FOR INTELLIGENT PHYSICAL AGENTS
+
+ 
+
+ 
+
+FIPA ACL Message Structure Specification
+
+ 
+
+ 
+
+ 
+ 
+Document
+ title
+ 
+ 
+ 
+FIPA
+ ACL Message Structure Specification
+ 
+ 
+ 
+
+ 
+ 
+Document
+ number
+ 
+ 
+ 
+SC00061G
+ 
+ 
+ 
+Document
+ source
+ 
+ 
+ 
+FIPA
+ TC Communication
+ 
+ 
+ 
+
+ 
+ 
+Document
+ status
+ 
+ 
+ 
+Standard
+ 
+ 
+ 
+Date
+ of this status
+ 
+ 
+ 
+2002/12/03
+ 
+ 
+ 
+
+ 
+ 
+Supersedes
+ 
+ 
+ 
+None
+ 
+ 
+ 
+
+ 
+ 
+Contact
+ 
+ 
+ 
+fab@fipa.org
+ 
+ 
+ 
+
+ 
+ 
+Change
+ history
+ 
+ 
+ 
+See Informative
+ Annex A � ChangeLog
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+�
+1996-2002 Foundation for Intelligent Physical Agents 
+
+http://www.fipa.org/
+
+Geneva, Switzerland
+
+ 
+
+ 
+ 
+Notice
+ 
+ 
+ 
+
+ 
+ 
+Use of the technologies described
+ in this specification may infringe patents, copyrights or other intellectual
+ property rights of FIPA Members and non-members. Nothing in this
+ specification should be construed as granting permission to use any of the
+ technologies described. Anyone planning to make use of technology covered by
+ the intellectual property rights of others should first obtain permission
+ from the holder(s) of the rights. FIPA strongly encourages anyone
+ implementing any part of this specification to determine first whether
+ part(s) sought to be implemented are covered by the intellectual property of
+ others, and, if so, to obtain appropriate licenses or other permission from
+ the holder(s) of such intellectual property prior to implementation. This
+ specification is subject to change without notice. Neither FIPA nor any of
+ its Members accept any responsibility whatsoever for damages or liability,
+ direct or consequential, which may result from the use of this specification.
+ 
+ 
+
+Foreword
+
+The Foundation for Intelligent Physical Agents
+(FIPA) is an international organization that is dedicated to promoting the
+industry of intelligent agents by openly developing specifications supporting
+interoperability among agents and agent-based applications. This occurs through
+open collaboration among its member organizations, which are companies and
+universities that are active in the field of agents. FIPA makes the results of
+its activities available to all interested parties and intends to contribute
+its results to the appropriate formal standards bodies where appropriate.
+
+The members of FIPA are individually and
+collectively committed to open competition in the development of agent-based
+applications, services and equipment. Membership in FIPA is open to any
+corporation and individual firm, partnership, governmental body or
+international organization without restriction. In particular, members are not
+bound to implement or use specific agent-based standards, recommendations and
+FIPA specifications by virtue of their participation in FIPA. 
+
+The FIPA specifications are developed through direct
+involvement of the FIPA membership. The status of a specification can be either
+Preliminary, Experimental, Standard, Deprecated or Obsolete. More detail
+about the process of specification may be found in the FIPA Document
+Policy [f-out-00000] and the FIPA Specifications Policy [f-out-00003]. A
+complete overview of the FIPA specifications and their current status may be
+found on the FIPA Web site.
+
+FIPA is a non-profit association registered in
+Geneva, Switzerland. As of June 2002, the 56 members of FIPA represented many
+countries worldwide. Further information about FIPA as an organization,
+membership information, FIPA specifications and upcoming meetings may be found
+on the FIPA Web site at http://www.fipa.org/.
+
+Contents
+
+1���� Scope. 1
+
+2���� FIPA ACL Message Structure. 2
+
+2.1����� Type of Communicative Act 3
+
+2.1.1����� Performative. 3
+
+2.2����� Participants in
+Communication. 3
+
+2.2.1����� Sender 3
+
+2.2.2����� Receiver 3
+
+2.2.3����� Reply To. 4
+
+2.3����� Content of Message. 4
+
+2.3.1����� Content 4
+
+2.4����� Description of Content 4
+
+2.4.1����� Language. 4
+
+2.4.2����� Encoding. 4
+
+2.4.3����� Ontology. 4
+
+2.5����� Control of Conversation. 5
+
+2.5.1����� Protocol 5
+
+2.5.2����� Conversation Identifier 5
+
+2.5.3����� Reply With. 5
+
+2.5.4����� In Reply To. 6
+
+2.5.5����� Reply By. 6
+
+3���� References. 7
+
+4���� Informative Annex A �
+ChangeLog. 8
+
+4.1����� 2002/10/01 - version F by
+TC X2S. 8
+
+4.2����� 2002/12/03 - version G by
+FIPA Architecture Board. 8
+
+1        
+Scope
+
+This document contains specifications for the
+FIPA ACL message parameters. The objectives of
+standardizing the form of a FIPA-compliant ACL message are:
+
+ 
+
+�        
+To help ensure
+interoperability by providing a standard set of ACL message structure, and,
+
+ 
+
+�        
+To provide a well-defined
+process for maintaining this set.
+
+ 
+
+2        
+FIPA ACL Message Structure
+
+A FIPA ACL message contains a set of one or
+more message parameters. Precisely which parameters are needed for effective
+agent communication will vary according to the situation; the only parameter
+that is mandatory in all ACL messages is the performative, although it
+is expected that most ACL messages will also contain sender, receiver and content parameters.
+
+ 
+
+If an agent does not recognize or is unable
+to process one or more of the parameters or parameter values, it can reply with
+the appropriate not-understood message.
+
+ 
+
+Specific implementations are free to
+include user-defined message parameters other than the FIPA ACL message parameters
+specified in Table 1. The semantics of these user-defined parameters is
+not defined by FIPA, and FIPA compliance does not require any particular
+interpretation of these parameters. The prefatory string �X-� must be used
+for the names of these non-FIPA standard additional parameters. 
+
+ 
+
+Some parameters of the message might be
+omitted when their value can be deduced by the context of the conversation.
+However, FIPA does not specify any mechanism to handle such conditions,
+therefore those implementations that omit some message parameters are not
+guaranteed to interoperate with each other.
+
+ 
+
+The full set of FIPA ACL message parameters
+is shown in Table 1 without regard to their specific encodings in an
+implementation. FIPA-approved encodings and parameter orderings for ACL
+messages are given in other specifications. Each ACL message representation
+specification contains precise syntax descriptions for ACL message encodings
+based on XML, text strings and several other schemes.
+
+ 
+
+A FIPA ACL message corresponds to the
+abstract parameter message payload identified in the [FIPA00001].
+
+ 
+
+ 
+
+ 
+ 
+Parameter���������������� 
+ 
+ 
+ 
+Category
+ of Parameters
+ 
+ 
+ 
+
+ 
+ 
+performative
+ 
+ 
+ 
+Type of communicative acts
+ 
+ 
+ 
+
+ 
+ 
+sender
+ 
+ 
+ 
+Participant in communication
+ 
+ 
+ 
+
+ 
+ 
+receiver
+ 
+ 
+ 
+Participant in communication
+ 
+ 
+ 
+
+ 
+ 
+reply-to
+ 
+ 
+ 
+Participant in communication
+ 
+ 
+ 
+
+ 
+ 
+content
+ 
+ 
+ 
+Content of message
+ 
+ 
+ 
+
+ 
+ 
+language
+ 
+ 
+ 
+Description of Content
+ 
+ 
+ 
+
+ 
+ 
+encoding
+ 
+ 
+ 
+Description of Content
+ 
+ 
+ 
+
+ 
+ 
+ontology
+ 
+ 
+ 
+Description of Content
+ 
+ 
+ 
+
+ 
+ 
+protocol
+ 
+ 
+ 
+Control of conversation
+ 
+ 
+ 
+
+ 
+ 
+conversation-id
+ 
+ 
+ 
+Control of conversation
+ 
+ 
+ 
+
+ 
+ 
+reply-with
+ 
+ 
+ 
+Control of conversation
+ 
+ 
+ 
+
+ 
+ 
+in-reply-to
+ 
+ 
+ 
+Control of conversation
+ 
+ 
+ 
+
+ 
+ 
+reply-by
+ 
+ 
+ 
+Control of conversation
+ 
+ 
+
+ 
+
+Table
+1: FIPA ACL Message Parameters
+
+ 
+
+The following terms are used to define the
+ontology and the abstract syntax of the FIPA ACL message structure:
+
+ 
+
+�        
+Frame. This is
+the mandatory name of this entity that must be used to represent each instance
+of this class.
+
+ 
+
+�        
+Ontology. This is
+the name of the ontology, whose domain of discourse includes their parameters
+described in the table. 
+
+ 
+
+�        
+Parameter. This
+identifies each component within the frame. The type of the parameter is
+defined relative to a particular encoding. Encoding specifications for ACL
+messages are given in their respective specifications.
+
+ 
+
+�        
+Description. This
+is a natural language description of the semantics of each parameter. Notes are
+included to clarify typical usage.
+
+ 
+
+�        
+Reserved Values.
+This is a list of FIPA-defined constants associated with each parameter. This
+list is typically defined in the specification referenced.
+
+ 
+
+All of the FIPA message parameters share
+the frame and ontology shown in Table 2.
+
+ 
+
+ 
+
+ 
+ 
+Frame���������������������� 
+ 
+ 
+ 
+fipa-acl-message
+ 
+ 
+ 
+
+ 
+ 
+Ontology
+ 
+ 
+ 
+fipa-acl
+ 
+ 
+
+ 
+
+Table
+2: FIPA ACL Message Frame and Ontology
+
+ 
+
+2.1       
+Type of Communicative Act
+
+2.1.1         
+Performative
+
+ 
+
+ 
+ 
+Parameter����� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+performative
+ 
+ 
+ 
+Denotes
+ the type of the communicative act of the ACL message
+ 
+ 
+ 
+See
+ [FIPA00037]
+ 
+ 
+
+ 
+
+Notes: The performative parameter
+is a required parameter of all ACL messages. Developers are encouraged to use
+the FIPA standard performatives (see [FIPA00037]) whenever possible.
+
+ 
+
+2.2       
+Participants in Communication
+
+2.2.1         
+Sender
+
+ 
+
+ 
+ 
+Parameter���� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+sender
+ 
+ 
+ 
+Denotes
+ the identity of the sender of the message, that is, the name of the agent of
+ the communicative act.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: The sender parameter
+will be a parameter of most ACL messages. It is possible to omit the sender parameter
+if, for example, the agent sending the ACL message wishes to remain anonymous.
+The sender parameter refers to the agent which performs the communicative act
+giving rise to this ACL message.
+
+ 
+
+2.2.2         
+Receiver
+
+ 
+
+ 
+ 
+Parameter������ 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+receiver
+ 
+ 
+ 
+Denotes
+ the identity of the intended recipients of the message.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes:
+Ordinarily, the receiver parameter will be a part of every ACL message. It is only
+permissible to omit the receiver parameter if the message recipient can be reliably inferred from
+context, or in special cases such as the embedded ACL message in proxy and propagate.
+
+ 
+
+The receiver parameter may be a
+single agent name or a non-empty set of agent names. The latter corresponds to
+the situation where the message is multicast. Pragmatically, the semantics of
+this multicast is that the sender intends the message for each recipient of the
+CA encoded in the message. For example, if an agent performs an inform act with
+a set of three agents as receiver, it denotes that the sender intends each of
+these agents to come to believe the content of the message.
+
+ 
+
+2.2.3         
+Reply To
+
+ 
+
+ 
+ 
+Parameter�� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+reply-to
+ 
+ 
+ 
+This parameter
+ indicates that subsequent messages in this conversation thread are to be
+ directed to the agent named in the reply-to parameter, instead of to the agent
+ named in the sender parameter.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+2.3       
+Content of Message
+
+2.3.1         
+Content
+
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+content
+ 
+ 
+ 
+Denotes
+ the content of the message; equivalently denotes the object of the action. The
+ meaning of the content of any ACL message is intended to be interpreted by
+ the receiver of the message. This is particularly relevant for instance when referring
+ to referential expressions, whose interpretation might be different for the
+ sender and the receiver.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: Most
+ACL messages require a content expression. Certain ACL message types, such as cancel, have an
+implicit content, especially in cases of using the conversation-id or in-reply-to
+parameters.
+
+ 
+
+2.4       
+Description of Content
+
+2.4.1         
+Language
+
+ 
+
+ 
+ 
+Parameter��� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+language
+ 
+ 
+ 
+Denotes
+ the language in which the content parameter is expressed.
+ 
+ 
+ 
+See
+ [FIPA00007]
+ 
+ 
+
+ 
+
+Notes: The
+ACL content parameter is expressed in a formal language. This field may be
+omitted if the agent receiving the message can be assumed to know the language
+of the content expression.
+
+ 
+
+2.4.2         
+Encoding
+
+ 
+
+ 
+ 
+Parameter����� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+encoding
+ 
+ 
+ 
+Denotes
+ the specific encoding of the content language expression.
+ 
+ 
+ 
+See
+ [FIPA00007]
+ 
+ 
+
+ 
+
+Notes: The
+content expression might be encoded in several ways. The encoding parameter
+is optionally used to specify this encoding to the recipient agent. If the encoding parameter
+is not present, the encoding will be specified in the message envelope that
+encloses the ACL message.
+
+ 
+
+2.4.3         
+Ontology
+
+ 
+
+ 
+ 
+Parameter���� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+ontology
+ 
+ 
+ 
+Denotes
+ the ontology(s) used to give a meaning to the symbols in the content
+ expression.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: The ontology
+parameter is used in conjunction with the language parameter to
+support the interpretation of the content expression by the receiving agent. In
+many situations, the ontology parameter will be commonly understood by the agent community and so
+this message parameter may be omitted.
+
+ 
+
+2.5       
+Control of Conversation
+
+2.5.1         
+Protocol
+
+ 
+
+ 
+ 
+Parameter���� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+protocol
+ 
+ 
+ 
+Denotes
+ the interaction protocol that the sending agent is employing with this ACL
+ message.
+ 
+ 
+ 
+See
+ [FIPA00025]
+ 
+ 
+
+ 
+
+Notes: The protocol parameter
+defines the interaction protocol in which the ACL message is generated. This parameter
+is optional; however, developers are advised that employing ACL without the
+framework of an interaction protocol (and thus directly using the ACL semantics
+to control the agent�s generation and interpretation of ACL messages) is an
+extremely ambitious undertaking.
+
+ 
+
+Any ACL message that contains a non-null
+value for the protocol parameter is considered to belong to a conversation and it is
+required to respect the following rules:
+
+ 
+
+�        
+the initiator of the protocol must assign a
+non-null value to the conversation-id parameter,
+
+ 
+
+�        
+all responses to the message, within the scope
+of the same interaction protocol, should contain the same value for the conversation-id parameter,
+and,
+
+ 
+
+�        
+the timeout value in the reply-by parameter
+must denote the latest time by which the sending agent would
+like to have received the next message in the protocol
+flow (not be confused with the latest time by which the interaction protocol
+should terminate).
+
+ 
+
+2.5.2         
+Conversation Identifier
+
+ 
+
+ 
+ 
+Parameter�� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+conversation-id
+ 
+ 
+ 
+Introduces
+ an expression (a conversation identifier) which is used to identify the
+ ongoing sequence of communicative acts that together form a conversation.
+ 
+ 
+ 
+ 
+ 
+ 
+
+����������� 
+
+Notes: An
+agent may tag ACL messages with a conversation identifier to manage its
+communication strategies and activities. Typically this will allow an agent to
+identify individual conversations with multiple agents. It will also allow
+agents to reason across historical records of conversations.
+
+ 
+
+It is required the usage of globally unique
+values for the conversation-id parameter in order to allow the
+participants to distinguish between several concurrent conversations. A simple
+mechanism to ensure uniqueness is the concatenation of the globally unique
+identifier of the sender agent to an identifier (for example, a progressive
+number) that is unique within the scope of the sender agent itself
+
+ 
+
+2.5.3         
+Reply With
+
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+reply-with
+ 
+ 
+ 
+Introduces
+ an expression that will be used by the responding agent to identify this
+ message.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: The reply-with parameter is designed to be used to follow a conversation thread in
+a situation where multiple dialogues occur simultaneously. For example, if
+agent i sends to agent j a message which contains:
+
+ 
+
+reply-with <expr>
+
+ 
+
+Agent j
+will respond with a message containing:
+
+ 
+
+in-reply-to <expr>
+
+ 
+
+2.5.4         
+In Reply To
+
+ 
+
+ 
+ 
+Parameter����� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+in-reply-to
+ 
+ 
+ 
+Denotes
+ an expression that references an earlier action to which this message is a
+ reply.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: See
+notes for Section 2.5.3.
+
+ 
+
+2.5.5         
+Reply By
+
+ 
+
+ 
+ 
+Parameter��� 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+reply-by
+ 
+ 
+ 
+Denotes
+ a time and/or date expression which indicates the latest time by which the
+ sending agent would like to receive a reply.
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+Notes: The
+time will be expressed according to the sender�s view of the time on the
+sender�s platform. The reply message can be identified in several ways: as the
+next sequential message in an interaction protocol, through the use of the reply-with
+parameter, through the use of a conversation-id and so forth. The way that the
+reply message is identified is determined by the agent implementer.
+
+ 
+
+3        
+�References
+
+[FIPA00001]����� FIPA Abstract Architecture Specification. Foundation
+for Intelligent Physical Agents, 2000. http://www.fipa.org/specs/fipa00001/
+
+[FIPA00007]����� FIPA Content Languages Library Specification.
+Foundation for Intelligent Physical Agents, 2000. http://www.fipa.org/specs/fipa00007/
+
+[FIPA00025]����� FIPA Interaction Protocol Library Specification. Foundation for Intelligent Physical Agents, 2000. http://www.fipa.org/specs/fipa00025/
+
+[FIPA00037]����� FIPA Communicative Act Library Specification.
+Foundation for Intelligent Physical Agents, 2000. http://www.fipa.org/specs/fipa00037/
+
+ 
+
+4        
+Informative Annex A � ChangeLog
+
+4.1       
+2002/10/01 - version F by TC X2S
+
+Page 1,
+line 64:��������������� Removed references to maintenance procedures and
+inclusion criteria
+
+Page 2,
+line 83:��������������� Added requirement that additional parameters have the �X-� prefix
+
+Page 4,
+line 148:������������� Specified that the content is intended to be interpreted
+by the receiver
+
+Page 5,
+line 178:������������ Added requirements to control the conversations
+
+Page 5,
+line 184:������������ Added requirement that conversation-id parameter be a globally unique
+identifier
+
+Page 7,
+lines 222-260:����� Removed section 3 on maintenance of FIPA ACL
+
+ 
+
+4.2       
+2002/12/03 - version G by FIPA Architecture Board
+
+Entire
+document:������������� Promoted to Standard status
+
+
+===== SOURCE: FIPA Agent Management Specification (SC00023K), archive.org snapshot =====
+===== FILE: fipa_SC00023K.html =====
+
+FIPA Agent Management Specification
+
+ 
+ Management for FIPA Agents
+ fab@fipa.org
+ FIPA, Agents, Agent Management
+ Normal
+ Jonathan Dale
+ 2
+ 2004-08-19T20:18:00Z
+ 2004-08-19T20:21:00Z
+ 2004-08-19T20:21:00Z
+ 3
+ 12727
+ 72544
+ FIPA Specification
+ FIPA
+ 489472
+ 604
+ 145
+ 89089
+ 11.0
+ 
+ 
+ -889793015
+ AW: [FAB] Specs from TC adhoc
+ m.berger@siemens.com
+ Berger Michael
+ 2098131969
+ 
+ 
+ 96
+ 800x600
+ 
+
+ 
+ 1
+ 1
+ 1
+ 1
+ 
+ 
+ 
+ 5 pt
+ 6.8 pt
+ 0
+ 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ C:\Work
+ Files\fipa\fab\specifications\experimental\fipa00023\XC00023H.html
+ 
+ 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+FOUNDATION FOR
+INTELLIGENT PHYSICAL AGENTSQUOTE 
+\* MERGEFORMAT 
+
+ 
+
+ 
+
+FIPA Agent
+Management Specification
+
+ 
+
+ 
+
+ 
+ 
+Document title
+ 
+ 
+ 
+ 
+FIPA Agent Management Specification
+ 
+ 
+ 
+ 
+
+ 
+ 
+Document number
+ 
+ 
+ 
+ 
+SC00023K
+ 
+ 
+ 
+ 
+Document source
+ 
+ 
+ 
+ 
+FIPA TC Agent Management
+ 
+ 
+ 
+ 
+
+ 
+ 
+Document status
+ 
+ 
+ 
+ 
+Standard
+ 
+ 
+ 
+ 
+Date of this status
+ 
+ 
+ 
+ 
+2004/182/03
+ 
+ 
+ 
+ 
+
+ 
+ 
+Supersedes
+ 
+ 
+ 
+ 
+FIPA00002, FIPA00017, FIPA00019
+ 
+ 
+ 
+ 
+
+ 
+ 
+Contact
+ 
+ 
+ 
+ 
+fab@fipa.org
+ 
+ 
+ 
+ 
+
+ 
+ 
+Change history
+ 
+ 
+ 
+ 
+See Informative Annex B — ChangeLogInformative
+ Annex C –
+ ChangeLogInformative Annex B
+ — ChangeLog
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000C0000005F0052006500660038003500330031003900330039000000
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+� 1996-2002 Foundation for Intelligent
+Physical Agents 
+
+http://www.fipa.org/
+
+Geneva, Switzerland
+
+ 
+
+ 
+ 
+Notice
+ 
+ 
+ 
+ 
+
+ 
+ 
+Use of the technologies described in this specification may infringe
+ patents, copyrights or other intellectual property rights of FIPA Members and
+ non-members. Nothing in this specification should be construed as granting
+ permission to use any of the technologies described. Anyone planning to make
+ use of technology covered by the intellectual property rights of others
+ should first obtain permission from the holder(s) of the rights. FIPA
+ strongly encourages anyone implementing any part of this specification to
+ determine first whether part(s) sought to be implemented are covered by the
+ intellectual property of others, and, if so, to obtain appropriate licenses
+ or other permission from the holder(s) of such intellectual property prior to
+ implementation. This specification is subject to change without notice.
+ Neither FIPA nor any of its Members accept any responsibility whatsoever for
+ damages or liability, direct or consequential, which may result from the use
+ of this specification.
+ 
+ 
+ 
+
+Foreword
+
+The Foundation for Intelligent
+Physical Agents (FIPA) is an international organization that is dedicated to
+promoting the industry of intelligent agents by openly developing
+specifications supporting interoperability among agents and agent-based
+applications. This occurs through open collaboration among its member
+organizations, which are companies and universities that are active in the
+field of agents. FIPA makes the results of its activities available to all
+interested parties and intends to contribute its results to the appropriate
+formal standards bodies where appropriate.
+
+The members of FIPA are individually
+and collectively committed to open competition in the development of
+agent-based applications, services and equipment. Membership in FIPA is open to
+any corporation and individual firm, partnership, governmental body or
+international organization without restriction. In particular, members are not
+bound to implement or use specific agent-based standards, recommendations and
+FIPA specifications by virtue of their participation in FIPA. 
+
+The FIPA specifications are
+developed through direct involvement of the FIPA membership. The status of a
+specification can be either Preliminary, Experimental, Standard, Deprecated or
+Obsolete. More detail about the process of
+specification may be found in the FIPA Document Policy [f-out-00000] and the
+FIPA Specifications Policy [f-out-00003]. A complete overview of the FIPA
+specifications and their current status may be found on the FIPA Web site.
+
+FIPA is a non-profit association
+registered in Geneva, Switzerland. As of June 2002, the 56 members of FIPA
+represented many countries worldwide. Further
+information about FIPA as an organization, membership information, FIPA
+specifications and upcoming meetings may be found on the FIPA Web site at
+http://www.fipa.org/.
+
+Contents
+
+ TOC \o
+"1-3" \h \z 1     Scope. PAGEREF _Toc26668961 \h 1
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360031000000
+
+2     Agent
+Management Reference Model PAGEREF _Toc26668962 \h 2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360032000000
+
+3     Agent Naming. PAGEREF _Toc26668963 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360033000000
+
+3.1     Transport
+Addresses. PAGEREF _Toc26668964 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360034000000
+
+3.2     Name Resolution. PAGEREF _Toc26668965 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360035000000
+
+4     Agent
+Management Services. PAGEREF _Toc26668966 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360036000000
+
+4.1     Directory
+Facilitator PAGEREF _Toc26668967 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360037000000
+
+4.1.1     Overview.. PAGEREF _Toc26668968 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360038000000
+
+4.1.2     Management
+Functions Supported by the Directory Facilitator PAGEREF _Toc26668969 \h 76
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900360039000000
+
+4.1.3     Federated
+Directory Facilitators. PAGEREF _Toc26668970 \h 76
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370030000000
+
+4.2     Agent
+Management System.. PAGEREF _Toc26668971 \h 87
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370031000000
+
+4.2.1     Overview.. PAGEREF _Toc26668972 \h 87
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370032000000
+
+4.2.2     Management
+Functions Supported by the Agent Management System.. PAGEREF _Toc26668973 \h 87
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370033000000
+
+4.3     Message
+Transport Service. PAGEREF _Toc26668974 \h 98
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370034000000
+
+5     Agent
+Platform.. PAGEREF _Toc26668975 \h 109
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370035000000
+
+5.1     Agent Life
+Cycle. PAGEREF _Toc26668976 \h 109
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370036000000
+
+5.2     Agent
+Registration. PAGEREF _Toc26668977 \h 1110
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370037000000
+
+5.2.1     Registration
+Lease Times. PAGEREF _Toc26668978 \h 1211
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370038000000
+
+6     Agent
+Management Ontology. PAGEREF _Toc26668979 \h 1413
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900370039000000
+
+6.1     Object
+Descriptions. PAGEREF _Toc26668980 \h 1413
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380030000000
+
+6.1.1     Agent
+Identifier Description. PAGEREF _Toc26668981 \h 1413
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380031000000
+
+6.1.2     Directory
+Facilitator Agent Description. PAGEREF _Toc26668982 \h 1514
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380032000000
+
+6.1.3     Service
+Description. PAGEREF _Toc26668983 \h 1514
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380033000000
+
+6.1.4     Search
+Constraints. PAGEREF _Toc26668984 \h 1715
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380034000000
+
+6.1.5     Agent
+Management System Agent Description. PAGEREF _Toc26668985 \h 1715
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380035000000
+
+6.1.6     Agent Platform
+Description. PAGEREF _Toc26668986 \h 1715
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380036000000
+
+6.1.7     Agent
+Service Description. PAGEREF _Toc26668987 \h 1816
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380037000000
+
+6.1.8     Property
+Template. PAGEREF _Toc26668988 \h 1816
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380038000000
+
+6.2     Function
+Descriptions. PAGEREF _Toc26668989 \h 1816
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900380039000000
+
+6.2.1     Registration
+of an Object with an Agent PAGEREF _Toc26668990 \h 1917
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390030000000
+
+6.2.2     Deregistration
+of an Object with an Agent PAGEREF _Toc26668991 \h 1917
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390031000000
+
+6.2.3     Modification
+of an Object Registration with an Agent PAGEREF _Toc26668992 \h 1917
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390032000000
+
+6.2.4     Search for
+an Object Registration with an Agent PAGEREF _Toc26668993 \h 1917
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390033000000
+
+6.2.5     Retrieve an
+Agent Platform Description. PAGEREF _Toc26668994 \h 2119
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390034000000
+
+6.3     Exceptions. PAGEREF _Toc26668995 \h 2219
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390035000000
+
+6.3.1     Exception
+Selection. PAGEREF _Toc26668996 \h 2220
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390036000000
+
+6.3.2     Exception
+Classes. PAGEREF _Toc26668997 \h 2220
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390037000000
+
+6.3.3     Not
+Understood Exception Predicates. PAGEREF _Toc26668998 \h 2220
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390038000000
+
+6.3.4     Refusal
+Exception Propositions. PAGEREF _Toc26668999 \h 2321
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360038003900390039000000
+
+6.3.5     Failure
+Exception Propositions. PAGEREF _Toc26669000 \h 2321
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300030000000
+
+7     Agent
+Management Content Language. PAGEREF _Toc26669001 \h 2422
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300031000000
+
+8     References. PAGEREF _Toc26669002 \h 2523
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300032000000
+
+9     Informative
+Annex A — Dialogue Examples. PAGEREF _Toc26669003 \h 2624
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300033000000
+
+10      Informative
+Annex B — ChangeLog. PAGEREF _Toc26669004 \h 3331
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300034000000
+
+10.1      2001/10/03 -
+version H by FIPA Architecture Board. PAGEREF _Toc26669005 \h 3331
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300035000000
+
+10.2      2002/11/01 -
+version I by TC X2S.. PAGEREF _Toc26669006 \h 3331
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300036000000
+
+10.3      2002/12/03 -
+version J by FIPA Architecture Board. PAGEREF _Toc26669007 \h 3432
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320036003600360039003000300037000000
+
+ TOC \o "1-3" \h \z \u 1     Scope. PAGEREF _Toc75950977 \h 1
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900370037000000
+
+2     Agent Management Reference Model PAGEREF _Toc75950978 \h 2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900370038000000
+
+3     Agent Naming. PAGEREF _Toc75950979 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900370039000000
+
+3.1     Transport Addresses. PAGEREF _Toc75950980 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900380030000000
+
+3.2     Name Resolution. PAGEREF _Toc75950981 \h 4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900380031000000
+
+4     Agent Management Services. PAGEREF _Toc75950982 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900380032000000
+
+4.1     Directory Facilitator PAGEREF _Toc75950983 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900380033000000
+
+4.1.1     Overview.. PAGEREF _Toc75950984 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900380034000000
+
+4.1.2     Management Functions Supported by the Directory
+Facilitator PAGEREF _Toc75950996 \h 6
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350030003900390036000000
+
+4.1.3     Federated Directory Facilitators. PAGEREF _Toc75951000 \h 7
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300030000000
+
+4.1.4     Subscribing and Unsubscribing with the DF. PAGEREF _Toc75951001 \h 7
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300031000000
+
+4.2     Agent Management System.. PAGEREF _Toc75951002 \h 9
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300032000000
+
+4.2.1     Overview.. PAGEREF _Toc75951003 \h 9
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300033000000
+
+4.2.2     Management Functions Supported by the Agent
+Management System.. PAGEREF _Toc75951004 \h 109
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300034000000
+
+4.3     Message Transport Service. PAGEREF _Toc75951005 \h 10
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300035000000
+
+5     Agent Platform.. PAGEREF _Toc75951006 \h 11
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300036000000
+
+5.1     Agent Life Cycle. PAGEREF _Toc75951007 \h 11
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300037000000
+
+5.2     Agent Registration. PAGEREF _Toc75951008 \h 12
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300038000000
+
+5.2.1     Registration Lease Times. PAGEREF _Toc75951009 \h 13
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000300039000000
+
+6     Agent Management Ontology. PAGEREF _Toc75951010 \h 15
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310030000000
+
+6.1     Object Descriptions. PAGEREF _Toc75951011 \h 15
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310031000000
+
+6.1.1     Agent Identifier Description. PAGEREF _Toc75951012 \h 15
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310032000000
+
+6.1.2     Directory Facilitator Agent Description. PAGEREF _Toc75951013 \h 16
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310033000000
+
+6.1.3     Service Description. PAGEREF _Toc75951014 \h 16
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310034000000
+
+6.1.4     Search Constraints. PAGEREF _Toc75951015 \h 17
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310035000000
+
+6.1.5     Agent Management System Agent Description. PAGEREF _Toc75951016 \h 17
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310036000000
+
+6.1.6     Agent Platform Description. PAGEREF _Toc75951017 \h 18
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310037000000
+
+6.1.7     Agent Service Description. PAGEREF _Toc75951019 \h 18
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000310039000000
+
+6.1.8     Property Template. PAGEREF _Toc75951020 \h 18
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320030000000
+
+6.2     Function Descriptions. PAGEREF _Toc75951021 \h 18
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320031000000
+
+6.2.1     Registration of an Object with an Agent PAGEREF _Toc75951022 \h 19
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320032000000
+
+6.2.2     Deregistration of an Object with an Agent PAGEREF _Toc75951023 \h 19
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320033000000
+
+6.2.3     Modification of an Object Registration with an
+Agent PAGEREF _Toc75951024 \h 19
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320034000000
+
+6.2.4     Search for an Object Registration with an Agent PAGEREF _Toc75951025 \h 19
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320035000000
+
+6.2.5     Retrieve an Agent Platform Description. PAGEREF _Toc75951027 \h 21
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320037000000
+
+6.3     Exceptions. PAGEREF _Toc75951028 \h 22
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320038000000
+
+6.3.1     Exception Selection. PAGEREF _Toc75951029 \h 22
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000320039000000
+
+6.3.2     Exception Classes. PAGEREF _Toc75951030 \h 22
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330030000000
+
+6.3.3     Not Understood Exception Predicates. PAGEREF _Toc75951031 \h 22
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330031000000
+
+6.3.4     Refusal Exception Propositions. PAGEREF _Toc75951032 \h 23
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330032000000
+
+6.3.5     Failure Exception Propositions. PAGEREF _Toc75951033 \h 23
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330033000000
+
+7     Agent Management Content Language. PAGEREF _Toc75951034 \h 2524
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330034000000
+
+8     References. PAGEREF _Toc75951035 \h 2625
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330035000000
+
+9     Informative Annex A — Dialogue Examples. PAGEREF _Toc75951036 \h 2726
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330036000000
+
+10      Informative Annex B — ChangeLog. PAGEREF _Toc75951039 \h 3633
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000330039000000
+
+10.1      2001/10/03 - version H by FIPA Architecture Board. PAGEREF _Toc75951040 \h 3633
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000340030000000
+
+10.2      2002/11/01 - version I by TC X2S.. PAGEREF _Toc75951041 \h 3633
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000340031000000
+
+10.3      2002/12/03 - version J by FIPA Architecture Board. PAGEREF _Toc75951042 \h 3734
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000340032000000
+
+10.4      2004/03/18 - version K by TC Ad hoc. PAGEREF _Toc75951043 \h 3734
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300370035003900350031003000340033000000
+
+ 
+
+1     Scope. 1
+
+2     Agent Management Reference
+Model 2
+
+3     Agent Naming. 4
+
+3.1     Transport Addresses. 4
+
+3.2     Name Resolution. 4
+
+4     Agent Management Services. 6
+
+4.1     Directory Facilitator 6
+
+4.1.1     Overview.. 6
+
+4.1.2     Management Functions Supported
+by the Directory Facilitator 7
+
+4.1.3     Federated Directory
+Facilitators. 8
+
+4.1.4     Subscribing and Unsubscribing
+with the DF. 8
+
+4.2     Agent Management System.. 10
+
+4.2.1     Overview.. 10
+
+4.2.2     Management Functions Supported
+by the Agent Management System.. 10
+
+4.3     Message Transport Service. 11
+
+5     Agent Platform.. 12
+
+5.1     Agent Life Cycle. 12
+
+5.2     Agent Registration. 13
+
+5.2.1     Registration Lease Times. 14
+
+6     Agent Management Ontology. 16
+
+6.1     Object Descriptions. 16
+
+6.1.1     Agent Identifier Description. 16
+
+6.1.2     Directory Facilitator Agent
+Description. 17
+
+6.1.3     Service Description. 17
+
+6.1.4     Search Constraints. 18
+
+6.1.5     Agent Management System Agent
+Description. 19
+
+6.1.6     Agent Platform Description. 19
+
+6.1.7     Agent Service Description. 19
+
+6.1.8     Property Template. 19
+
+6.2     Function Descriptions. 19
+
+6.2.1     Registration of an Object with
+an Agent 20
+
+6.2.2     Deregistration of an Object
+with an Agent 20
+
+6.2.3     Modification of an Object
+Registration with an Agent 20
+
+6.2.4     Search for an Object
+Registration with an Agent 21
+
+6.2.5     Retrieve an Agent Platform
+Description. 23
+
+6.3     Exceptions. 23
+
+6.3.1     Exception Selection. 23
+
+6.3.2     Exception Classes. 23
+
+6.3.3     Not Understood Exception
+Predicates. 24
+
+6.3.4     Refusal Exception Propositions. 24
+
+6.3.5     Failure Exception Propositions. 24
+
+7     Agent Management Content
+Language. 26
+
+8     References. 27
+
+9     Informative Annex A —
+Dialogue Examples. 28
+
+10      Informative Annex B —
+Control Flow Example. 35
+
+11      Informative Annex C —
+Discovery Middleware. 36
+
+12      Informative Annex D —
+ChangeLog. 37
+
+12.1      2001/10/03 - version H by FIPA
+Architecture Board. 37
+
+12.2      2002/11/01 - version I by TC
+X2S.. 37
+
+12.3      2002/12/03 - version J by FIPA
+Architecture Board. 38
+
+12.4      2004/03/18 - version K by TC
+Ad hoc. 38
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+1      
+Scope
+
+This document is part
+of the FIPA specifications covering agent management for inter-operable agents.
+This specification incorporates and further enhances [FIPA00002] and
+[FIPA00067] represents a companion specification.
+
+ 
+
+This document contains
+specifications for agent management including agent management services, agent
+management ontology and agent platform message transport, including
+the discovery of agents and their offered services in ad hoc[1]
+networks..
+This document is primarily concerned with defining open standard interfaces for
+accessing agent management services. The internal design and implementation of
+intelligent agents and agent management infrastructure is not mandated by FIPA
+and is outside the scope of this specification.
+
+ 
+
+The document provides a
+series of examples to illustrate the agent management functions defined.
+
+ 
+
+2       Agent Management Reference Model
+
+Agent management
+provides the normative framework within which FIPA agents exist and operate. It
+establishes the logical reference model for the creation, registration,
+location, communication, migration and retirement of agents.
+
+ 
+
+The entities contained
+in the reference model (see Figure 1) are logical capability sets (that is, services) and do
+not imply any physical configuration. Additionally, the implementation details
+of individual APs and agents are the design choices of the individual agent
+system developers.
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+Figure 1: Agent
+Management Reference Model
+
+ 
+
+The agent management
+reference model consists of the following logical components[2],
+each representing a capability set (these can be combined in physical
+implementations of APs):
+
+ 
+
+�      
+An agent is a computational process that implements the
+autonomous, communicating functionality of an application. Agents communicate
+using an Agent Communication Language. An Agent is the fundamental actor on an
+AP which combines one or more service capabilities, as published in a service
+description, into a unified and integrated execution model. An agent must have
+at least one owner, for example, based on organisational affiliation or human
+user ownership, and an agent must support at least one notion of identity. This
+notion of identity is the Agent Identifier (AID) that labels an agent so that
+it may be distinguished unambiguously within the Agent Universe. An agent may
+be registered at a number of transport addresses at which it can be contacted.
+
+ 
+
+�      
+A Directory
+Facilitator (DF) is an optional
+component of the AP, but if it is present, it must be implemented as a DF
+service (see Section 4.1
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000C0000005F0052006500660038003700300039003100320032000000
+). The DF provides yellow pages services to other
+agents. Agents may register their services with the DF or query the DF to find
+out what services are offered by other agents,
+including  the discovery of agents
+and their offered services in ad hoc networks. Multiple DFs may exist within an AP and may be federated.
+The DF is a reification of the Agent Directory Service in [FIPA00001].
+
+ 
+
+�      
+An Agent
+Management System (AMS) is a
+mandatory component of the AP. The AMS exerts supervisory control over access
+to and use of the AP. Only one AMS will exist in a single AP. The AMS maintains
+a directory of AIDs which contain transport addresses (amongst other things)
+for agents registered with the AP. The AMS offers white pages services to other
+agents. Each agent must register with an AMS in order to get a valid AID. The
+AMS is a reification of the Agent Directory Service in [FIPA00001].
+
+ 
+
+�      
+An Message
+Transport Service (MTS) is the
+default communication method between agents on different APs (see [FIPA00067]).
+
+ 
+
+�      
+An Agent
+Platform (AP) provides the
+physical infrastructure in which agents can be deployed. The AP consists of the
+machine(s), operating system, agent support software, FIPA agent management
+components (DF, AMS and MTS) and agents.
+
+ 
+
+The internal design of an AP is an issue for agent system developers and
+is not a subject of standardisation within FIPA. AP�s and the agents which are
+native to those APs, either by creation directly within or migration to the AP,
+may use any proprietary method of inter-communication. 
+
+ 
+
+It should be noted that the concept of an AP does not mean that all
+agents resident on an AP have to be co-located on the same host computer. FIPA
+envisages a variety of different APs from single processes containing
+lightweight agent threads, to fully distributed APs built around proprietary or
+open middleware standards.
+
+ 
+
+FIPA is concerned only with how communication is carried out between
+agents who are native to the AP and agents outside the AP. Agents are free to
+exchange messages directly by any means that they can support.
+
+�      
+Software describes all non-agent, executable collections
+of instructions accessible through an agent. Agents may access software, for
+example, to add new services, acquire new communications protocols, acquire new
+security protocols/algorithms, acquire new negotiation protocols, access tools
+which support migration, etc.
+
+ 
+
+3      
+Agent Naming
+
+The FIPA agent naming reference model
+identifies an agent through an extensible collection of parameter-value pairs[3],
+called an Agent Identifier (AID). The extensible nature of an AID allows it to
+be augmented to accommodate other requirements, such as social names, nick
+names, roles, etc. which can then be attached to services within the AP. An AID
+comprises[4]
+(see Section 6.1.1
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400360036003700310033003700300030000000
+):
+
+ 
+
+�      
+The name parameter, which is a globally unique identifier that can
+be used as a unique referring expression of the agent. One of the simplest
+mechanisms is to construct it from the actual name of the agent and its home
+agent platform address[5]
+(HAP), separated by the @ character. This is a
+reification of the notion of an Agent Name from [FIPA00001].
+
+ 
+
+�      
+The addresses parameter, which
+is a list of transport addresses where a message can be delivered (see Section 3.1
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000C0000005F0052006500660038003700300036003300330032000000
+). This is a reification of
+the notion of a Locator from [FIPA00001].
+
+ 
+
+�      
+The resolvers parameter, which
+is a list of name resolution service addresses (see Section 3.2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400350036003500310033003300340035000000
+).
+
+ 
+
+The parameter values of an AID can be
+edited or modified by an agent, for example, to update the sequence of name
+resolution servers or transport addresses in an AID. However, the mandatory
+parameters can only be changed by the agent to whom the AID belongs. AIDs are
+primarily intended to be used to identify agents inside the envelope of a
+transport message, specifically within the to and from parameters
+(see [FIPA00067]).
+
+ 
+
+Two AIDs are considered
+to be equivalent if their name parameters are
+the same. 
+
+ 
+
+3.1     
+Transport Addresses
+
+A transport address is
+a physical address at which an agent can be contacted and is usually specific
+to a Message Transport Protocol. A given agent may support many methods of
+communication and can put multiple transport address values in the addresses parameter of an AID.
+
+ 
+
+The EBNF syntax of a
+transport addresses is the same as for a URL given in [RFC2396]. [FIPA00067] describes the semantics of
+message delivery with regard to transport addresses.
+
+ 
+
+3.2     
+Name Resolution
+
+Name resolution is a service that is provided by the AMS
+through the search function. The resolvers parameter of
+the AID contains a sequence of AIDs at which the AID of the agent can
+ultimately be resolved into a transport address or set of transport address.
+
+ 
+
+An example name resolution pattern might be:
+
+ 
+
+1.    
+agent-a wishes to send a message to agent-b, whose AID is:
+
+ 
+
+(agent-identifier
+
+  :name agent-b@bar.com
+
+  :resolvers (sequence
+
+    (agent-identifier
+
+      :name ams@foo.com
+
+      :addresses (sequence
+iiop://foo.com/acc))))
+
+ 
+
+         and
+agent-a wishes to know
+additional transport addresses that have been given for agent-b.
+
+ 
+
+2.    
+Therefore, agent-a can send a search request to the
+first agent specified in the resolvers parameter which is typically an AMS. In this
+example, the AMS at foo.com.
+
+ 
+
+3.    
+If the AMS at foo.com has agent-b
+registered with it, then it
+returns a result message containing the AMS agent description of
+agent-b; if not, then a failed message is
+returned.
+
+ 
+
+4.    
+Upon receipt of
+the result message, agent-a can extract the agent-identifier parameter of the ams-agent-description
+and then extract the addresses parameter of this to determine the transport
+address(es) of agent-b.
+
+ 
+
+5.    
+agent-a can now send a message to agent-b by inserting the addresses parameter
+into the AID of agent-b.
+
+ 
+
+4      
+Agent Management Services
+
+4.1     
+Directory Facilitator
+
+4.1.1     
+Overview
+
+A DF is a component of
+an AP that provides a yellow pages directory service to agents; . It is the trusted, benign
+custodian of the agent directory. It is trusted in the sense that it must
+strive to maintain an accurate, complete and timely list of agents. It is
+benign in the sense that it must provide the most current information about
+agents in its directory on a non-discriminatory basis to all authorised agents.
+The DF is an optional component of an AP. At least one DF must be resident on each AP (the
+default DF). However, an AP may support any number of DFs and DFs
+may register with each other to form federations.
+
+ 
+
+Every agent that wishes
+to publicise its services to other agents, should find an appropriate DF and
+request the registration of
+its agent description. There is no intended future commitment or obligation on
+the part of the registering agent implied in the act of registering. For
+example, an agent can refuse a request for a service which is advertised
+through a DF. Additionally, the DF cannot guarantee the validity or accuracy of
+the information that has been registered with it, neither can it control the
+life cycle of any agent. An object description must be supplied containing
+values for all of the mandatory parameters of the description. It may also
+supply optional and private parameters, containing non-FIPA standardised
+information that an agent developer might want included in the directory. The deregistration function has the consequence that there is no
+longer a commitment on behalf of the DF to broker information relating to that
+agent. At any time, and for any reason, the agent may request the DF to modify its agent description.
+
+ 
+
+An agent may search in order to request information from a DF. The
+DF does not guarantee the validity of the information provided in response to a
+search request, since the DF does not place any restrictions on the information
+that can be registered with it. However, the DF may restrict access to
+information in its directory and will verify all access permissions for agents
+which attempt to inform it of agent state changes. A DF may also decide to restrict
+the visibility of the registered agent descriptions according to a certain
+policy. How such a policy is specified is currently outside the scope of this
+document.
+
+ 
+
+The default DF
+on an AP, if present, has a reserved AID of:
+
+ 
+
+(agent-identifier
+
+  :name df@hap_name[6]
+
+  :addresses (sequence hap_transport_address))
+
+ 
+
+The DF also
+provides discovery functionality in ad hoc networks, in which network nodes may frequently join and leave. It provides a
+high-level interface for agents therebythat hides the possible usage of various discovery
+middleware (DM), depending on the underlying ad hoc technology. Figure 2
+outlines a possible model of a DF wrapping various DMs. Figure 1 outlines a possible model of a DF wrapping various
+discovery middlewares. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Figure 1: Reference Model of the Discovery Process in Ad Hoc
+Networks 
+
+ 
+
+ 
+
+4.1.2      Management Functions Supported by the Directory Facilitator
+
+In order to access the
+directory of agent descriptions managed by the DF, each DF must be able to
+perform the following functions, when defined on the domain of objects of type df-agent-description in compliance with the semantics described in Section
+6.1.2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400380030003300340037003600390033000000
+:
+
+ 
+
+ 
+
+�      
+register
+
+ 
+
+ 
+
+�      
+deregister
+
+ 
+
+ 
+
+�      
+modify
+
+ 
+
+ 
+
+�      
+search
+
+ 
+
+ 
+
+ThThee fipa-request
+interaction protocol [FIPA00026] must be
+used by agents wishing to request a DF to perform these actions.
+
+ 
+
+ 
+
+A DF may
+support the following extended directory mechanism:
+
+ 
+
+�      
+subscribe
+mechanism
+
+ 
+
+For the subscribe
+mechanism a DF must implement the fipa-subscribe interaction protocol [FIPA00035]
+in order to allow agents to subscribe for being notified about registration, deregistration and
+modifications of certain agent descriptions. If implemented, the implementation
+of this protocol must comply with the semantics and syntax specified in section
+4.1.4.
+
+ 
+
+get thea DF may support an
+introspection functionality. In order to get that information an agent may ask
+the DF for its df-agent-description (the agent description of the
+DF). The df-agent-description contains beside other
+information a services
+slot which can contain a set of service descriptions. Each of the service descriptions may contain information such as the ability of the DF to publish and
+search offered agent services in underlaying DMs (see type slot in section  REF _Ref466452803 \r \h 6.1.3
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400360036003400350032003800300033000000
+)[7]The
+fipa-request interaction protocol [FIPA00026] must be used by
+agents wishing to request a DF to perform this action and receive the list of available DMs.[8] A
+DF that does not support such functionality is simply required to respond with a refuse communicative act with unsupported-function as content of the communicative act.
+
+ 
+
+ 
+
+4.1.3      Federated Directory Facilitators
+
+The DF encompasses a
+search mechanism that searches first locally and then extends the search to
+other DFs, if allowed. The default search mechanism is assumed to be a
+depth-first search across DFs. For specific purposes, optional constraints can
+be used as described in Section 06.1.4
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400370039003000340035003800310036000000
+ such
+as the number of answers (max-results). The
+federation of DFs for extending searches can be achieved by DFs registering
+with each other with fipa-df as the value
+of the type parameter in the service-description.
+
+ 
+
+When a DF receives a
+search action, it may determine whether it needs to propagate this search to
+other DFs that are registered with it[9].
+It should only forward searches where the value of the max-depth parameter is greater than 1 and where it has not received
+a prior search with the same search-id parameter.
+If it does forward the search action, then it must use the following rules:
+
+ 
+
+1.     It must not change the
+value of the search-id parameter when it
+propagates the search and the value of all search-id parameters should
+be globally unique.
+
+ 
+
+2.     Before propagation, it should decrement the value of the max-depth parameter by 1.
+
+4.1.4      Subscribing and Unsubscribing with the DF
+
+Some DFs may implement the fipa-subscribe interaction protocol [FIPA00035] in order to allow
+agents to subscribe for being
+notified about registration,
+deregistration and modifications  of the registeredcertain agent descriptions.
+
+A DF that does not support such a functionality is
+simply required to respond with a not-understood communicative act with unsupported-act
+as content
+of the communicative act
+(see also  REF _Ref65573301 \r \h 6.4.3
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F00520065006600360035003500370033003300300031000000
+  REF _Ref67464918 \r \h 6.3.3
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F00520065006600360037003400360034003900310038000000
+).
+
+Further to what specified in [FIPA00035], the usage of the fipa-subscribe interaction protocol must obey to the following
+rules:
+
+-       
+the content
+of the subscribe communicative act must be a referential expression denoting a persistent search action. For
+simplicity, the following can be used 
+
+"(
+
+    (action
+
+     (agent-identifier
+
+      :name df@foo.com
+
+      :addresses (sequence
+iiop://foo.com/acc)
+
+     )
+
+     (search 
+
+      (df-agent-description 
+
+       :ontologies (set
+meeting-scheduler)
+
+       :languages (set fipa-sl0 kif)
+
+       :services (set
+
+       
+(service-description
+
+         :name profiling
+
+         :type
+meeting-scheduler-service))
+
+       )
+
+      
+(search-constraints :max-depth 2)))
+
+ )"
+
+         to
+denote (and be understood as):
+
+"((iota ?x 
+
+  
+(result
+
+   
+(action
+
+     (agent-identifier
+
+      :name df@foo.com
+
+      :addresses
+(sequence iiop://foo.com/acc)
+
+     )
+
+     (search 
+
+      (df-agent-description
+
+       :ontologies (set meeting-scheduler)
+
+       :languages (set fipa-sl0 kif)
+
+       :services (set
+
+        (service-description
+
+         :name profiling
+
+         :type meeting-scheduler-service))
+
+       )
+
+       (search-constraints :max-depth 2)))
+
+    ?x)))"
+
+-       
+the DF must
+continue to send an inform
+communicative act as the objects denoted by the referring expression
+change, i.e. as the result of the persistent search
+changes. For
+simplicity, the following can be used:
+
+  
+"((result
+
+      (action
+
+        (agent-identifier
+
+          :name df@foo.com
+
+          :addresses
+(sequence iiop://foo.com/acc))
+
+      (search 
+
+        (df-agent-description
+
+          :ontologies (set
+meeting-scheduler)
+
+          :languages
+(set fipa-sl0 kif)
+
+          :services
+(set
+
+           
+(service-description
+
+             
+:name profiling
+
+             
+:type meeting-scheduler-service))
+
+        (search-constraints :max-depth 2)))) 
+
+        (set
+
+         
+(df-agent-description
+
+           
+:name
+
+             
+(agent-identifier
+
+               
+:name scheduler-agent@foo.com
+
+               
+:addresses (sequence iiop://foo.com/acc))
+
+           
+:ontologies (set meeting-scheduler fipa-agent-management)
+
+           
+:languages (set fipa-sl0 fipa-sl1 kif)
+
+           
+:services (set 
+
+             
+(service-description
+
+               
+:name profiling
+
+               
+:type meeting-scheduler-service)
+
+             
+(service-description
+
+                :name profiling
+
+               
+:type user-profiling-service))))))")
+
+ 
+
+to denote (and be understood as):
+
+  
+"(= (iota ?x 
+
+  
+(result
+
+   
+(action
+
+     (agent-identifier
+
+      :name df@foo.com
+
+      :addresses (sequence
+iiop://foo.com/acc)
+
+     )
+
+     (search 
+
+      (df-agent-description 
+
+       :ontologies (set
+meeting-scheduler)
+
+       :languages (set fipa-sl0 kif)
+
+       :services (set
+
+        (service-description
+
+         :name profiling
+
+         :type
+meeting-scheduler-service))
+
+       )
+
+       (search-constraints :max-depth 2)))
+
+   
+   ?x))
+
+     (set
+
+         
+(df-agent-description
+
+           
+:name
+
+             
+(agent-identifier
+
+               
+:name scheduler-agent@foo.com
+
+               
+:addresses (sequence iiop://foo.com/acc))
+
+           
+:ontologies (set meeting-scheduler fipa-agent-management)
+
+           
+:languages (set fipa-sl0 fipa-sl1 kif)
+
+           
+:services (set 
+
+             
+(service-description
+
+               
+:name profiling
+
+               
+:type meeting-scheduler-service)
+
+              (service-description
+
+               
+:name profiling
+
+               
+:type user-profiling-service)))))"
+
+ 
+
+ 
+
+A
+subscription is terminated by a cancel act as specified in [FIPA0003535].
+
+ 
+
+4.2     
+Agent Management System
+
+4.2.1      Overview
+
+An AMS is a mandatory
+component of the AP and only one AMS will exist in a single AP. The AMS is
+responsible for managing the operation of an AP, such as the creation of
+agents, the deletion of agents and overseeing the migration of agents to and
+from the AP (if agent mobility is supported by the AP). Since different APs
+have different capabilities, the AMS can be queried to obtain a description of
+its AP. A life cycle is associated with each agent on the AP (see Section 5.1)
+which is maintained by the AMS.
+
+ 
+
+The AMS represents the
+managing authority of an AP and if the AP spans multiple machines, then the AMS
+represents the authority across all machines. An AMS can request that an agent
+performs a specific management function, such as quit (that is, terminate all execution on its AP) and has the
+authority to forcibly enforce the function if such a request is ignored.
+
+ 
+
+The AMS maintains an
+index of all the agents that are currently resident on an AP, which includes
+the AID of agents. Residency of an agent on the AP implies that the agent has
+been registered with the AMS. Each agent, in order to comply with the FIPA
+reference model, must register
+with the AMS of its HAP.
+
+ 
+
+Agent descriptions can
+be later modified at any
+time and for any reason. Modification is restricted by authorisation of the
+AMS. The life of an agent with an AP terminates with its deregistration from the AMS. After deregistration, the AID of
+that agent can be removed by the directory and can be made available to other
+agents who should request it.
+
+ 
+
+Agent description can
+be searched with the AMS and
+access to the directory of ams-agent-descriptions
+is further controlled by the AMS; no default policy is specified by this
+specification. The AMS is also the custodian of the AP description that can be
+retrieved by requesting the action get-description.
+
+ 
+
+The AMS on an AP has a
+reserved AID of:
+
+ 
+
+(agent-identifier
+
+  :name ams@hap_name[10]
+
+:addresses (sequence hap_transport_address))
+
+ 
+
+The name parameter of the AMS (ams@hap_name) is considered to be the Service Root of the AP
+(see [FIPA00001]).
+
+ 
+
+4.2.2      Management Functions Supported by the Agent
+Management System
+
+An AMS must be able to
+perform the following functions, in compliance with the semantics described in
+Section 06.1.5
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400380030003300340037003900340038000000
+ (the first four functions are defined within the
+scope of the AMS, only on the domain of objects of type ams-agent-description and the last on the domain of objects of type ap-description):
+
+ 
+
+�      
+register
+
+ 
+
+�      
+deregister
+
+ 
+
+�      
+modify
+
+ 
+
+�      
+search
+
+ 
+
+�      
+get-description
+
+ 
+
+In addition to the
+management functions exchanged between the AMS and agents on the AP, the AMS
+can instruct the underlying AP to perform the following operations:
+
+ 
+
+�      
+Suspend agent,
+
+ 
+
+�      
+Terminate agent,
+
+ 
+
+�      
+Create agent,
+
+ 
+
+�      
+Resume agent
+execution,
+
+ 
+
+�      
+Invoke agent,
+
+ 
+
+�      
+Execute agent,
+and,
+
+ 
+
+�      
+Resource
+management.
+
+ 
+
+4.3     
+Message Transport Service
+
+The Message Transport
+Service (MTS) delivers messages between agents within an AP and to agents that
+are resident on other APs. All FIPA agents have access to at least one MTS and
+only messages addressed to an agent can be sent to the MTS. See [FIPA00067] for more information on the
+MTS.
+
+ 
+
+5       Agent Platform
+
+5.1     
+Agent Life Cycle
+
+FIPA agents exist
+physically on an AP and utilise the facilities offered by the AP for realising
+their functionalities. In this context, an agent, as a physical software
+process, has a physical life cycle that has to be managed by the AP. This section describes a possible life cycle that can be used to
+describe the states which it is believed are necessary and the responsibilities
+of the AMS in these states.
+
+ 
+
+The life cycle of a
+FIPA agent is (see Figure 23):
+
+ 
+
+�      
+AP Bounded
+
+An agent is physically managed within an AP and the life cycle of a
+static agent is therefore always bounded to a specific AP.
+
+ 
+
+�      
+Application
+Independent
+
+The life cycle model is independent from any application system and it
+defines only the states and the transitions of the agent service in its life
+cycle.
+
+ 
+
+�      
+Instance-Oriented
+
+The agent described in the life cycle model is assumed to be an instance
+(that is, an agent which has unique name and is executed independently).
+
+ 
+
+�      
+Unique
+
+Each agent has only one AP life cycle state at any time and within only
+one AP.
+
+ 
+
+ 
+
+ 
+
+Figure 23: Agent Life Cycle
+
+ 
+
+The followings are the
+responsibility that an AMS, on behalf of the AP, has with regard to message
+delivery in each state of the life cycle of an agent:
+
+ 
+
+�      
+Active
+
+The MTS delivers messages to the agent as normal.
+
+ 
+
+�      
+Initiated/Waiting/Suspended
+
+The MTS either buffers messages until the agent returns to the active
+state or forwards messages to a new location (if a forward is set for the
+agent).
+
+ 
+
+�      
+Transit
+
+The MTS either buffers messages until the agent becomes active (that is,
+the move function failed on the original AP or the agent was successfully
+started on the destination AP) or forwards messages to a new location (if a
+forward is set for the agent). Notice that only mobile agents can enter the Transit
+state. This ensures that a
+stationary agent executes all of its instructions on the node where it was
+invoked.
+
+ 
+
+�      
+Unknown
+
+The MTS either buffers messages or rejects them, depending upon the
+policy of the MTS and the transport requirements of the
+message. 
+
+ 
+
+The state transitions
+of agents can be described as:
+
+ 
+
+�      
+Create
+
+The creation or installation of a new agent.
+
+ 
+
+�      
+Invoke
+
+The invocation of a new agent.
+
+ 
+
+�      
+Destroy
+
+The forceful termination of an agent. This can only be initiated by the
+AMS and cannot be ignored by the agent.
+
+ 
+
+�      
+Quit
+
+The graceful termination of an agent. This can be ignored by the agent.
+
+ 
+
+�      
+Suspend
+
+Puts an agent in a suspended state. This can be initiated by the agent
+or the AMS.
+
+ 
+
+�      
+Resume
+
+Brings the agent from a suspended state. This can only be initiated by
+the AMS.
+
+ 
+
+�      
+Wait
+
+Puts an agent in
+a waiting state. This can only be initiated by an
+agent.
+
+ 
+
+�      
+Wake Up
+
+Brings the agent from a waiting state. This can only be initiated by the
+AMS.
+
+ 
+
+The following two
+transitions are only used by mobile agents:
+
+ 
+
+�      
+Move
+
+Puts the agent in a transitory state. This can only be initiated by the
+agent.
+
+ 
+
+�      
+Execute
+
+Brings the agent from a transitory state. This can only be initiated by
+the AMS.
+
+ 
+
+5.2     
+Agent Registration
+
+There are three ways in
+which an agent can be registered with an AMS:
+
+ 
+
+�      
+The agent was
+created on the AP.
+
+ 
+
+�      
+The agent migrated
+to the AP, for those APs which support agent mobility.
+
+ 
+
+�      
+The agent
+explicitly registered with the AP.
+
+ 
+
+Agent registration
+involves registering an AID with the AMS. When an agent is either created or
+registers with an AP, the agent is registered with the AMS, for example by
+using the register function. In the following example, an agent
+called discovery-agent is
+registering with an AP located at foo.com. The
+agent discovery-agent was
+created on the AP (that is, discovery-agent�s HAP) at bar.com and requests
+that the AMS registers it.
+
+ 
+
+For example:
+
+ 
+
+(request
+
+ 
+:sender
+
+    (agent-identifier
+
+ 
+    :name
+discovery-agent@bar.com
+
+      :addresses (sequence
+iiop://bar.com/acc))
+
+ 
+:receiver (set
+
+    (agent-identifier
+
+      :name ams@foo.com
+
+      :addresses (sequence
+iiop://foo.com/acc)))
+
+ 
+:ontology
+fipa-agent-management
+
+  :language fipa-sl0
+
+  :protocol fipa-request
+
+  :content
+
+    "((action
+
+      (agent-identifier
+
+        :name ams@foo.com
+
+        :addresses (sequence
+iiop://foo.com/acc))
+
+      (register
+
+        (:ams-description
+
+          :name
+
+           
+(agent-identifier
+
+             
+:name discovery-agent@bar.com
+
+             
+:addresses (sequence iiop://bar.com/acc))
+
+           ...)))")
+
+ 
+
+It should be noted that
+the addresses parameter of the AID represents the transport
+address(es) that the agent would like any messages directed to (see [FIPA00067] for information on how the MTS
+deals with this). In the above example, the agent discovery-agent registers itself with the foo.com AP but by virtue of specifying a different transport
+address in the addresses parameter of its AID, messages that arrive at foo.com will be forwarded to bar.com.
+
+ 
+
+5.2.1      Registration Lease Times
+
+To enable the DF to
+manage a maintainable number of registrations over a long period of time, the
+DF may implement lease times using the lease-time parameter of a df-agent-description. A lease time is either a duration of time, such as 3
+hours, or an absolute time, such as 08:00 26-Jul-2002, at which point a
+registration made by an agent can be removed from the DF registration database.
+
+ 
+
+When an agent wishes to
+register with a DF, it can specify a lease time which is how long it would like
+the registration to be kept. If this lease time is okay for the DF, then it
+will accept the registration as usual and the value of the lease-time parameter in the content of the inform reply will be the same. Consequently, when the
+lease time expires, the registration will be silently removed by the DF. On the
+other hand, if the lease time is not acceptable to the DF, then the DF can
+include a new lease time as
+the value of the lease-time parameter in the content of the inform reply. This is the case when an agent does not
+specify a lease time in its registration.
+
+ 
+
+If the DF does not
+support lease times, it will notify to the requesting agent that its
+registration is valid for an unlimited time by removing this parameter in the
+content of the inform reply, in fact the default lease-time is
+defined to be unlimited.
+
+ 
+
+For example, and agent
+may register the following df-agent-description:
+
+ 
+
+(request
+
+  ...                 
+
+ 
+:content
+
+    "((action
+
+      (agent-identifier
+
+     :name df@foo.com
+
+     :addresses (sequence iiop://foo.com/acc))
+
+   (register 
+
+        (df-agent-description
+
+         :name
+
+          
+(agent-identifier
+
+            
+:name dummy@foo.com
+
+            
+:addresses (sequence iiop://foo.com/acc))
+
+       :protocols
+fipa-request
+
+      
+:ontologies (set fipa-agent-management)
+
+       :languages
+(set fipa-sl0)
+
+       :lease-time
++00000000T600000000T
+
+       ...")
+
+ 
+
+Then if the DF agrees
+to this lease time, it will reply with and inform which contains the same value
+for the lease-time parameter:
+
+ 
+
+(inform
+
+ 
+...
+
+ 
+:content
+
+    "((done
+
+      (action
+
+        (agent-identifier
+
+          :name df@foo.com
+
+          :addresses
+(sequence iiop://foo.com/acc))
+
+      (register
+
+        (df-agent-description
+
+          :name
+
+           
+(agent-identifier 
+
+             
+:name dummy@foo.com
+
+             
+:addresses (sequence iiop://foo.com/acc))
+
+          :protocols
+(set fipa-request application-protocol)
+
+          :ontologies
+(set meeting-scheduler)
+
+          :languages
+(set fipa-sl0 kif)
+
+        :lease-time +00000000T600000000T
+
+        ...")
+
+ 
+
+If an agent wishes to renew a lease time,
+then it can use the modify action to specify a new value for the lease-time parameter. The
+verification of this lease time goes through the same procedure mentioned in
+the last paragraph: if it is okay, then the value of
+the lease-time parameter in the content of the inform reply will be the same, if it is not okay, the
+value of the lease-time parameter in the content of the inform reply will be a new value which is acceptable
+to the DF.
+
+ 
+
+6       Agent Management Ontology
+
+6.1      Object Descriptions
+
+This section describes a set of frames that
+represent the classes of objects in the domain of discourse within the
+framework of the fipa-agent-management ontology. The closure of symbols of this ontology can be obtained from
+[FIPA00067] that specifies additional set of frames of this ontology.
+
+ 
+
+This ontology does not specify any specific
+positional order to encode the parameters of the objects. Therefore, it is
+required to encode objects in SL by specifying both the parameter name and the
+parameter value (see Section 3.6 of [FIPA00008]).
+
+ 
+
+The following terms are used to describe
+the objects of the domain:
+
+ 
+
+�      
+Frame.
+This is the mandatory name of this entity that must be used to represent each
+instance of this class.
+
+ 
+
+�      
+Ontology. This is the name of the ontology, whose domain of discourse
+includes the parameters described in the table.
+
+ 
+
+�      
+Parameter. This is the mandatory name of a parameter of this frame. 
+
+ 
+
+�      
+Description. This is a natural language description of the semantics of each
+parameter.
+
+ 
+
+�      
+Presence. This indicates whether each parameter is mandatory or optional.
+
+ 
+
+�      
+Type.
+This is the type of the values of the parameter: Integer, Word, String, URL,
+Term, Set or Sequence.
+
+ 
+
+�      
+Reserved Values. This is a list of FIPA-defined constants that can assume values
+for this parameter.
+
+ 
+
+6.1.1     
+Agent Identifier Description
+
+This type of object
+represents the identification of the agent. The addresses
+parameter and the name resolution mechanism (see Section 3.2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003400350036003500310033003300340035000000
+), is a reification of the notion of Locator from
+[FIPA00001]. See also Section 3.3.7 in FIPA Agent Message Transport Service
+[FIPA00067] specifications.
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+ 
+agent-identifier
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+ 
+Reserved Values
+ 
+ 
+ 
+ 
+
+ 
+ 
+name
+ 
+ 
+ 
+ 
+The symbolic name of the
+ agent.
+ 
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+ 
+word
+ 
+ 
+ 
+ 
+df@hap_name
+ 
+ams@hap_name
+ 
+ 
+ 
+ 
+
+ 
+ 
+addresses
+ 
+ 
+ 
+ 
+A sequence of ordered
+ transport addresses where the agent can be contacted. The order implies a
+ preference relation of the agent to receive messages over that address.
+ 
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+ 
+Sequence
+ of url
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+resolvers
+ 
+ 
+ 
+ 
+A sequence of ordered
+ AIDs where name resolution services for the agent can be contacted. The order
+ in the sequence implies a preference in the list of resolvers.
+ 
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+ 
+Sequence
+ of agent-identifier
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+6.1.2      Directory Facilitator Agent Description
+
+This type of object represents the
+description that can be registered with the DF service. This is a reification
+of the Agent Directory Entry from [FIPA00001].
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+df-agent-description
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+name
+ 
+ 
+ 
+The
+ identifier of the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+agent-identifier[11]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+services
+ 
+ 
+ 
+A list
+ of services supported by this agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ 
+service-description
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+protocols
+ 
+ 
+ 
+A list
+ of interaction protocols supported by the agent. 
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+See
+ [FIPA00025]
+ 
+ 
+ 
+
+ 
+ 
+ontologies
+ 
+ 
+ 
+A list
+ of ontologies known by the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+fipa-agent-management
+ 
+ 
+ 
+
+ 
+ 
+languages
+ 
+ 
+ 
+A list
+ of content languages known by the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+fipa-sl
+ 
+fipa-sl0
+ 
+fipa-sl1
+ 
+fipa-sl2
+ 
+ 
+ 
+
+ 
+ 
+lease-time
+ 
+ 
+ 
+The
+ duration or time at which the lease for this registration will expire[12].
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+datetime[13]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+scope
+ 
+ 
+ 
+This parameter defines the visibility of this
+ df-agent-description. The default value is global, meaning
+ that the agent does not wish to put any restriction to
+ the visibility of the registered df-agent-description.
+ 
+The value �local� means that the registered df-agent-description
+ must not be
+ visible and
+ returned as a result of a search propagated by a federated DF.. All the other values restrict
+ the visibility of the description of the specified DM. E.g. the reserved value df-federation means to advertise the description to all
+ federated DFs (i.e. all
+ cases except fipa-dm-jxta and fipa-dm-bluetooth).
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of string
+ 
+ 
+ 
+global
+ 
+local
+ 
+fipa-dm-jxta[14]
+ 
+fipa-dm-bluetooth
+ 
+df-fedeation
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+dms
+ 
+ 
+ 
+A list of DMs[15]
+ that must be used to
+ perform one of the DF functions register,
+ deregister or
+ modify
+ (described in
+ section  REF _Ref66080028 \r \h 6.2
+ 08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F00520065006600360036003000380030003000320038000000
+ ).
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+jxta[16]
+ 
+bluetooth
+ 
+ 
+
+ 
+
+Note: The scope slot is an extension to the first version [SC000023] of this standard. Existing DFs, that are
+compatible with the previous
+version of the specs, are
+also compatible with this version of the spec with the
+only exception that they will not be able to enforce a scope different from �global�. 
+
+6.1.3     
+Service Description
+
+This type of object represents the
+description of each service registered with the DF.
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+service-description
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+nName
+ 
+ 
+ 
+The
+ name of the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+tType
+ 
+ 
+ 
+The
+ type of the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+fipa-df[17]
+ 
+fipa-ams
+ 
+fipa-dm-jxta
+ 
+fipa-dm-bluetooth
+ 
+ 
+ 
+
+ 
+ 
+protocols
+ 
+ 
+ 
+A list
+ of interaction protocols supported by the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ontologies
+ 
+ 
+ 
+A list
+ of ontologies supported by the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set
+ of string
+ 
+ 
+ 
+fipa-agent-management
+ 
+ 
+ 
+
+ 
+ 
+languages
+ 
+ 
+ 
+A list
+ of content languages supported by the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ownership
+ 
+ 
+ 
+The
+ owner of the service
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+properties
+ 
+ 
+ 
+A list
+ of properties that discriminate the service.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of
+ property
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+1.1.1                 
+Discovery
+Middleware Description
+
+This type of object represents the description of
+each DM wrapped by the DF.
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+ 
+ 
+dm-description
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Ontology
+ 
+ 
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+type
+ 
+ 
+ 
+The type of DM.
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+string
+ 
+ 
+ 
+jxta[18]
+ 
+bluetooth
+ 
+ 
+
+ 
+
+6.1.4     
+Search Constraints
+
+This type of object represents a set of
+constraints to limit the function of searching within a directory.
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+search-constraints
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+max-depth
+ 
+ 
+ 
+The
+ maximum depth of propagation of the search  to federated directories[19].
+ A negative value indicates that the sender agent is willing to allow the
+ search to propagate across all DFs.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+integer
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+mMax-results
+ 
+ 
+ 
+The
+ maximum number of results to return for the search[20].
+ A negative value indicates that the sender agent is willing to receive all
+ available results. 
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+integer
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+sSearch-id
+ 
+ 
+ 
+A
+ globally unique identifier for a search.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+timeout
+ 
+ 
+ 
+The
+ duration or time to wait[21] for search results from remote DFs or
+ DMs when
+ a
+ search is not only performed on the local AP but also on remote APs.[22] 
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+datetime
+ 
+ 
+ 
+ 
+ 
+ 
+
+fipa-dm-Fipa-dm-
+
+6.1.5     
+Agent Management System Agent
+Description
+
+ 
+
+ Agent Management System Agent
+Description
+
+This type of object represents the
+description of each service registered with the AMS. This is a reification of
+the Agent Directory Entry from [FIPA00001].
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+ams-agent-description
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+name
+ 
+ 
+ 
+The
+ identifier of the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+agent-identifier[23]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ownership
+ 
+ 
+ 
+The
+ owner of the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+state
+ 
+ 
+ 
+The
+ life cycle state of the agent.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+string
+ 
+ 
+ 
+initiated
+ 
+active
+ 
+suspended
+ 
+waiting
+ 
+transit
+ 
+ 
+
+ 
+
+6.1.6     
+Agent Platform Description
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+ap-description
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+Reserved
+ Values
+ 
+ 
+ 
+
+ 
+ 
+Name
+ 
+ 
+ 
+The
+ name of the AP.
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Ap-services
+ 
+ 
+ 
+The set of services provided by this AP to the resident
+ agents.
+ 
+ 
+ 
+Optional
+ 
+ 
+ 
+Set of ap-service
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+6.1.7     
+Agent Service Description
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+ 
+ap-service
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+ 
+Reserved Values
+ 
+ 
+ 
+ 
+
+ 
+ 
+Name
+ 
+ 
+ 
+ 
+The name of the AP
+ Service.
+ 
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Type
+ 
+ 
+ 
+ 
+The type of the AP
+ Service.
+ 
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+ 
+string
+ 
+ 
+ 
+ 
+fipa.mtp.*
+ 
+ 
+ 
+ 
+
+ 
+ 
+addresses
+ 
+ 
+ 
+ 
+A list of the addresses
+ of the service.
+ 
+ 
+ 
+ 
+Mandatory 
+ 
+ 
+ 
+ 
+Sequence of url 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+6.1.8      Property Template
+
+This is a special object that is useful for specifying
+parameter/value pairs.
+
+ 
+
+ 
+
+ 
+ 
+Frame
+ 
+Ontology
+ 
+ 
+ 
+ 
+property
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Parameter
+ 
+ 
+ 
+ 
+Description
+ 
+ 
+ 
+ 
+Presence
+ 
+ 
+ 
+ 
+Type
+ 
+ 
+ 
+ 
+Reserved Values
+ 
+ 
+ 
+ 
+
+ 
+ 
+name
+ 
+ 
+ 
+ 
+The name of the property.
+ 
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+ 
+string 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+value
+ 
+ 
+ 
+ 
+The value of the property
+ 
+ 
+ 
+ 
+Mandatory
+ 
+ 
+ 
+ 
+term
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+
+6.2     
+Function Descriptions
+
+The
+following tables define usage and semantics of the functions that are part of
+the fipa-agent-management ontology and that are supported by the agent management services and
+agents on the AP.
+
+ 
+
+This ontology does not specify any specific
+positional order to encode the parameters of the objects. Therefore, it is
+required to encode objects in SL by specifying both the parameter name and the
+parameter value (see Section 3.6 of [FIPA00008]).
+
+ 
+
+The following terms are used to describe
+the functions of the fipa-agent-management domain:
+
+ 
+
+�      
+Function. This is the symbol that identifies the function in the ontology.
+
+ 
+
+�      
+Ontology. This is the name of the ontology, whose domain of discourse
+includes the function described in the table.
+
+ 
+
+�      
+Supported by. This is the type of agent that supports this function. 
+
+ 
+
+�      
+Description. This is a natural language description of the semantics of the
+function.
+
+ 
+
+�      
+Domain.
+This indicates the domain over which the function is defined. The arguments
+passed to the function must belong to the set identified by the domain.
+
+ 
+
+�      
+Range. This
+indicates the range to which the function maps the symbols of the domain. The
+result of the function is a symbol belonging to the set identified by the
+range.
+
+ 
+
+�      
+Arity.
+This indicates the number of arguments that a function takes. If a function can
+take an arbitrary number of arguments, then its arity is undefined.
+
+ 
+
+ 
+
+6.2.1     
+Registration
+of an Object with an Agent 
+
+ 
+
+ 
+ 
+Function
+ 
+ 
+ 
+register
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Ontology
+ 
+ 
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Supported by
+ 
+ 
+ 
+DF and AMS
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Description
+ 
+ 
+ 
+The execution of this
+ function has the effect of registering a new object into the knowledge base
+ of the executing agent. The DF or AMS description supplied must include a
+ valid AID.
+ 
+ 
+ 
+
+ 
+ 
+Domain
+ 
+ 
+ 
+df-agent-description / ams-agent-description
+ 
+ 
+ 
+
+ 
+ 
+Range
+ 
+ 
+ 
+The
+ execution of this function results in a change of the state, but it has no
+ explicit result. Therefore there is no range set.
+ 
+ 
+ 
+
+ 
+ 
+Arity
+ 
+ 
+ 
+11
+ 
+ 
+
+ 
+
+6.2.2     
+Deregistration of
+an Object with an Agent 
+
+ 
+
+ 
+ 
+Function
+ 
+ 
+ 
+deregister
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Ontology
+ 
+ 
+ 
+fipa-agent-management
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Supported by
+ 
+ 
+ 
+DF and AMS
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+Description
+ 
+ 
+ 
+An agent may
+ deregister an object in order to remove all of its parameters from a
+ directory. The DF or AMS description supplied must include a valid AID.
+ 
+ 
+ 
+
+ 
+ 
+Domain
+ 
+ 
+ 
+df-agent-description
+ / ams-agent-description
+ 
+ 
+ 
+
+ 
+ 
+Range
+ 
+ 
+ 
+The execution of this function results in
+ a change of the state, but it has no explicit result. Therefore there is no
+ range set.
+ 
+ 
+ 
+
+ 
+ 
+Arity
+ 
+ 
+ 
+11
+ 
+ 
+
+ 
+
+6.2.3      Modif

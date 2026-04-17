@@ -1,0 +1,25 @@
+{
+  "title": "A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol",
+  "description": "<p>Companion repository for the article <em>A Functional Taxonomy of the Web of Agents: Operational Definitions and an Empirical Validation Protocol</em>. Contains the article PDF and LaTeX source, an operational codebook v1.0, a standardized rater prompt, a local specification-corpus snapshot of five systems (FIPA ACL, OWL-S, LangChain, MCP, A2A), three independent rater outputs, and a script that reproduces the agreement and Cohen's kappa statistics reported in Section V.</p><p>Pilot results (three independent LLM rater instances, <em>n</em>&nbsp;=&nbsp;5 systems, four axes): mean pairwise Cohen's <em>&kappa;</em>&nbsp;=&nbsp;{1.00, 0.81, 0.80, 1.00}.</p>",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    {
+      "name": "Petrova, Tatiana",
+      "affiliation": "University of Luxembourg",
+      "orcid": "0000-0003-0478-1566"
+    }
+  ],
+  "keywords": [
+    "web of agents",
+    "multi-agent systems",
+    "large language models",
+    "agent interoperability",
+    "Model Context Protocol",
+    "taxonomy",
+    "inter-rater reliability"
+  ],
+  "license": "CC-BY-4.0",
+  "access_right": "open",
+  "language": "eng"
+}

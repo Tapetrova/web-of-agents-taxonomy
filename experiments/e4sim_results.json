@@ -1,0 +1,85 @@
+{
+  "a1": {
+    "pct_agree": {
+      "R1R2": 1.0,
+      "R1R3": 1.0,
+      "R2R3": 1.0
+    },
+    "cohens_kappa": {
+      "R1R2": 1.0,
+      "R1R3": 1.0,
+      "R2R3": 1.0,
+      "mean": 1.0
+    },
+    "N": 5,
+    "disagreements": []
+  },
+  "a2": {
+    "pct_agree": {
+      "R1R2": 0.8,
+      "R1R3": 0.8,
+      "R2R3": 1.0
+    },
+    "cohens_kappa": {
+      "R1R2": 0.7222222222222223,
+      "R1R3": 0.7222222222222223,
+      "R2R3": 1.0,
+      "mean": 0.8148148148148149
+    },
+    "N": 5,
+    "disagreements": [
+      {
+        "system": "OWL-S",
+        "vals": [
+          "UNSPECIFIED",
+          "0.5",
+          "0.5"
+        ]
+      }
+    ]
+  },
+  "a3": {
+    "pct_agree": {
+      "R1R2": 0.8,
+      "R1R3": 0.8,
+      "R2R3": 1.0
+    },
+    "cohens_kappa": {
+      "R1R2": 0.7058823529411766,
+      "R1R3": 0.7058823529411766,
+      "R2R3": 1.0,
+      "mean": 0.8039215686274511
+    },
+    "N": 5,
+    "disagreements": [
+      {
+        "system": "LangChain",
+        "vals": [
+          "UNSPECIFIED",
+          "1.0",
+          "1.0"
+        ]
+      }
+    ]
+  },
+  "a4": {
+    "pct_agree": {
+      "R1R2": 1.0,
+      "R1R3": 1.0,
+      "R2R3": 1.0
+    },
+    "cohens_kappa": {
+      "R1R2": 1.0,
+      "R1R3": 1.0,
+      "R2R3": 1.0,
+      "mean": 1.0
+    },
+    "N": 5,
+    "disagreements": []
+  },
+  "_meta": {
+    "n_raters": 3,
+    "n_systems": 5,
+    "notes": "Raters used local corpus only. UNSPECIFIED treated as its own category for agreement and kappa."
+  }
+}

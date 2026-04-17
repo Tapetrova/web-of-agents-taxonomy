@@ -1,0 +1,61 @@
+system,axis,rater,value,quote,source
+FIPA ACL,a1,R1,0.5,"""type of the communicative act of the ACL message""","SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot"
+FIPA ACL,a1,R2,0.5,"""Type of communicative acts""",FIPA ACL Message Structure Specification (SC00061G)
+FIPA ACL,a1,R3,0.5,"""the type of the communicative act of the ACL message""","===== SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot ====="
+FIPA ACL,a2,R1,0.0,"""that is mandatory in all ACL messages is the performative""","SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot"
+FIPA ACL,a2,R2,0.0,"""is mandatory in all ACL messages is the performative""",FIPA ACL Message Structure Specification (SC00061G)
+FIPA ACL,a2,R3,0.0,"""is a required parameter of all ACL messages""","===== SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot ====="
+FIPA ACL,a3,R1,0.5,"""The DF provides yellow pages services to other""","SOURCE: FIPA Agent Management Specification (SC00023K), archive.org snapshot"
+FIPA ACL,a3,R2,0.5,"""The DF provides yellow pages services to other""",FIPA ACL Message Structure Specification (SC00061G)
+FIPA ACL,a3,R3,0.5,"""the interaction protocol that the sending agent is employing with this ACL""","===== SOURCE: FIPA ACL Message Structure Specification (SC00061G), archive.org snapshot ====="
+FIPA ACL,a4,R1,0.0,"""provides a yellow pages directory service to agents""","SOURCE: FIPA Agent Management Specification (SC00023K), archive.org snapshot"
+FIPA ACL,a4,R2,0.0,"""Agents may register their services with the DF or query the DF""",FIPA ACL Message Structure Specification (SC00061G)
+FIPA ACL,a4,R3,0.0,"""The DF provides yellow pages services to other""","===== SOURCE: FIPA Agent Management Specification (SC00023K), archive.org snapshot ====="
+OWL-S,a1,R1,0.0,"""OWL-S (formerly DAML-S) is an ontology of services""",SOURCE: OWL-S 1.2 W3C Submission (2004)
+OWL-S,a1,R2,0.0,"""OWL-S (formerly DAML-S) is an ontology of services""",OWL-S 1.2 W3C Submission (2004)
+OWL-S,a1,R3,0.0,"""OWL-S (formerly DAML-S) is an ontology of services""",===== SOURCE: OWL-S 1.2 W3C Submission (2004) =====
+OWL-S,a2,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+OWL-S,a2,R2,0.5,"""discover, invoke, compose, and monitor Web resources offering""",OWL-S 1.2 W3C Submission (2004)
+OWL-S,a2,R3,0.5,"""adopted by registries like UDDI""",===== SOURCE: OWL-S 1.2 W3C Submission (2004) =====
+OWL-S,a3,R1,0.0,"""amenable to efficient reasoning procedures""",SOURCE: OWL-S 1.2 W3C Submission (2004)
+OWL-S,a3,R2,0.0,"""reasoning applications can be built to automatically""",OWL-S 1.2 W3C Submission (2004)
+OWL-S,a3,R3,0.0,"""These languages are also amenable to efficient reasoning procedures""",===== SOURCE: OWL-S 1.2 W3C Submission (2004) =====
+OWL-S,a4,R1,0.0,"""itself in OWL-S with a service registry""",SOURCE: OWL-S 1.2 W3C Submission (2004)
+OWL-S,a4,R2,0.0,"""service registry, also called middle agent""",OWL-S 1.2 W3C Submission (2004)
+OWL-S,a4,R3,0.0,"""adopted by registries like UDDI""",===== SOURCE: OWL-S 1.2 W3C Submission (2004) =====
+LangChain,a1,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a1,R2,UNSPECIFIED,NO_VERBATIM_FOUND,LangChain master/AGENTS.md
+LangChain,a1,R3,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a2,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a2,R2,UNSPECIFIED,NO_VERBATIM_FOUND,LangChain master/AGENTS.md
+LangChain,a2,R3,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a3,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a3,R2,1.0,"""when referencing LLMs in docstrings and illustrative code snippets""",LangChain master/AGENTS.md
+LangChain,a3,R3,1.0,"""add new chat completion feature""",===== SOURCE: LangChain master/AGENTS.md =====
+LangChain,a4,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+LangChain,a4,R2,UNSPECIFIED,NO_VERBATIM_FOUND,LangChain master/AGENTS.md
+LangChain,a4,R3,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+MCP,a1,R1,1.0,"""`description`: Human-readable description of functionality""",SOURCE: MCP spec 2025-03-26 server/tools.mdx
+MCP,a1,R2,1.0,"""description"": ""Get current weather information for a location""",MCP spec 2025-03-26 server/tools.mdx
+MCP,a1,R3,1.0,"""JSON Schema defining expected parameters""",===== SOURCE: MCP spec 2025-03-26 server/tools.mdx =====
+MCP,a2,R1,1.0,"""MCP uses JSON-RPC to encode messages""",SOURCE: MCP spec 2025-03-26 basic/transports.mdx
+MCP,a2,R2,1.0,"""MCP uses JSON-RPC to encode messages.""",MCP spec 2025-03-26 basic/transports.mdx
+MCP,a2,R3,1.0,"""JSON-RPC](https://www.jsonrpc.org/) 2.0 messages to establish""",===== SOURCE: MCP spec 2025-03-26 index.mdx =====
+MCP,a3,R1,1.0,"""Tools enable models to interact with external systems""",SOURCE: MCP spec 2025-03-26 server/tools.mdx
+MCP,a3,R2,1.0,"""Tools in MCP are designed to be""",MCP spec 2025-03-26 server/tools.mdx
+MCP,a3,R3,1.0,"""allows servers to expose tools that can be invoked by""",===== SOURCE: MCP spec 2025-03-26 server/tools.mdx =====
+MCP,a4,R1,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+MCP,a4,R2,UNSPECIFIED,NO_VERBATIM_FOUND,MCP spec 2025-03-26 index.mdx
+MCP,a4,R3,UNSPECIFIED,NO_VERBATIM_FOUND,NO_VERBATIM_FOUND
+A2A,a1,R1,1.0,"""A JSON metadata document published by an A2A Server""",SOURCE: A2A specification (github.com/a2aproject/A2A main/docs/specification.md)
+A2A,a1,R2,1.0,"""AI agent for academic research and fact-checking""",A2A specification (github.com/a2aproject/A2A main/docs/specification.md)
+A2A,a1,R3,1.0,"""Provides research assistance with citations and source verification""",===== SOURCE: A2A specification (github.com/a2aproject/A2A main/docs/specification.md) =====
+A2A,a2,R1,1.0,"""JSON-RPC 2.0 over HTTP(S)""",SOURCE: A2A README (github.com/a2aproject/A2A main)
+A2A,a2,R2,1.0,"""JSON-RPC 2.0 over HTTP(S)""",A2A README (github.com/a2aproject/A2A main)
+A2A,a2,R3,1.0,"""JSON-RPC 2.0 over HTTP(S)""",===== SOURCE: A2A README (github.com/a2aproject/A2A main) =====
+A2A,a3,R1,1.0,"""enabling gen AI agents, built on diverse frameworks by different companies""",SOURCE: A2A README (github.com/a2aproject/A2A main)
+A2A,a3,R2,1.0,"""enabling gen AI agents, built on diverse frameworks by different companies running on separate""",A2A README (github.com/a2aproject/A2A main)
+A2A,a3,R3,1.0,"""open protocol enabling communication and interoperability between opaque agentic applications""",===== SOURCE: A2A README (github.com/a2aproject/A2A main) =====
+A2A,a4,R1,0.5,"""URI provides a standardized location for discovering an A2A agent's capabilities""",SOURCE: A2A specification (github.com/a2aproject/A2A main/docs/specification.md)
+A2A,a4,R2,0.5,"""https://{server_domain}/.well-known/agent-card.json""",A2A specification (github.com/a2aproject/A2A main/docs/specification.md)
+A2A,a4,R3,0.5,"""/.well-known/agent-card.json""",===== SOURCE: A2A specification (github.com/a2aproject/A2A main/docs/specification.md) =====
